@@ -53,12 +53,12 @@ class boWorkspaceProduct extends boAdminObject
 		return 1;
 	}
 	
-	function modify(&$aSource)
+	function modify($aSource)
 	{
 		throw new PermissionDeniedException();
 	}
 	
-	function delete(&$aSource)
+	function delete($aSource)
 	{
 		throw new PermissionDeniedException();
 	}

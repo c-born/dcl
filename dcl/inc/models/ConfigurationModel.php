@@ -95,6 +95,19 @@ class ConfigurationModel extends DbProvider
 
 		$this->FreeResult();
 
+		// setting added after the original schema: create its row on first load so it shows on the configuration page
+		static $bTriedNotifyAlways = false;
+		if (!array_key_exists('DCL_NOTIFY_ALWAYS', $dcl_info) && !$bTriedNotifyAlways)
+		{
+			$bTriedNotifyAlways = true;
+			$oNew = new ConfigurationModel();
+			$oNew->dcl_config_name = 'DCL_NOTIFY_ALWAYS';
+			$oNew->dcl_config_field = 'dcl_config_varchar';
+			$oNew->dcl_config_varchar = '';
+			$oNew->Add();
+			$dcl_info['DCL_NOTIFY_ALWAYS'] = '';
+		}
+
 		if ($dcl_domain_info[$dcl_domain]['dbType'] == 'mysql')
 		{
 			// mysql doesn't grok subselects, which are necessary for

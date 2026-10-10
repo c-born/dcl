@@ -269,6 +269,24 @@ class boWatches
 		return $t->ToString($dcl_info['DCL_WO_EMAIL_TEMPLATE']);
 	}
 	
+	// Addresses from the DCL_NOTIFY_ALWAYS setting receive every notification (including for their own changes), with the full (non-public) body
+	function AddAlwaysNotify(&$arrEmail, &$arrPublicEmail)
+	{
+		global $dcl_info;
+
+		if (!isset($dcl_info['DCL_NOTIFY_ALWAYS']) || trim($dcl_info['DCL_NOTIFY_ALWAYS']) == '')
+			return;
+
+		foreach (preg_split('/[\s,;]+/', $dcl_info['DCL_NOTIFY_ALWAYS'], -1, PREG_SPLIT_NO_EMPTY) as $sEmail)
+		{
+			if (!filter_var($sEmail, FILTER_VALIDATE_EMAIL))
+				continue;
+
+			unset($arrPublicEmail[$sEmail]);
+			$arrEmail[$sEmail] = 1;
+		}
+	}
+
 	// obj is a dbWorkorder object and actions is a comma delimited list of actions to send for
 	function sendNotification(&$obj, $actions, $bShowNotifyMsg = true)
 	{
@@ -370,6 +388,8 @@ class boWatches
 			}
 		}
 		
+		$this->AddAlwaysNotify($arrEmail, $arrPublicEmail);
+
 		if (dcl_count($arrEmail) == 0 && dcl_count($arrPublicEmail) == 0)
 			return;
 			
@@ -536,6 +556,8 @@ class boWatches
 				}
 			}
 		}
+
+		$this->AddAlwaysNotify($arrEmail, $arrPublicEmail);
 
 		if (dcl_count($arrEmail) == 0 && dcl_count($arrPublicEmail) == 0)
 			return;

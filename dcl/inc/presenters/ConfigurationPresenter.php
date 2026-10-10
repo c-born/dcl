@@ -82,6 +82,7 @@ class ConfigurationPresenter
 		$t->assign('VAL_SMTPAUTHPWD', $dcl_info['DCL_SMTP_AUTH_PWD']);
 		$t->assign('VAL_SMTPTIMEOUT', $dcl_info['DCL_SMTP_TIMEOUT']);
 		$t->assign('VAL_SMTPDEFAULTEMAIL', $dcl_info['DCL_SMTP_DEFAULT_EMAIL']);
+		$t->assign('VAL_NOTIFYALWAYS', isset($dcl_info['DCL_NOTIFY_ALWAYS']) ? $dcl_info['DCL_NOTIFY_ALWAYS'] : '');
 
 		// Work Orders
 		$t->assign('CMB_DEFAULTSTATUSASSIGN', $this->GetStatusCombo('DCL_DEF_STATUS_ASSIGN_WO', $dcl_info['DCL_DEF_STATUS_ASSIGN_WO']));

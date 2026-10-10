@@ -143,6 +143,9 @@
 		{dcl_form_control id=DCL_SMTP_DEFAULT_EMAIL controlsize=10 label=$smarty.const.STR_CFG_SMTPDEFAULTEMAIL required=true help=$smarty.const.STR_CFG_SMTPDEFAULTEMAILHELP}
 		{dcl_input_text id=DCL_SMTP_DEFAULT_EMAIL maxlength=255 value=$VAL_SMTPDEFAULTEMAIL}
 		{/dcl_form_control}
+		{dcl_form_control id=DCL_NOTIFY_ALWAYS controlsize=10 label="Always Notify" help="E-mail addresses (separated by commas) that receive every notification for every work order and ticket, even for their own changes. Leave empty for none."}
+		{dcl_input_text id=DCL_NOTIFY_ALWAYS maxlength=255 value=$VAL_NOTIFYALWAYS}
+		{/dcl_form_control}
 	</fieldset>
 	<fieldset>
 		<legend>{$smarty.const.STR_CFG_WORKORDERTITLE}</legend>

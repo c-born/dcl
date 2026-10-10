@@ -42,7 +42,7 @@
 			{$columns[$groupcol].title|escape}&nbsp;[&nbsp;{$records[row][$groupcol]|escape}&nbsp;]&nbsp;
 			{if $smarty.section.group.last}</td></tr>{/if}
 		{/section}
-	{/strip}{elseif count($groups) > 0}{strip}
+	{/strip}{elseif $groups|count > 0}{strip}
 		{assign var=newgroup value=false}
 		{foreach from=$groups item=value key=key}
 			{if $records[row][$value] != $records[row.index_prev][$value]}
@@ -66,7 +66,7 @@
 	{if $rownum}<td class="rownum">{$smarty.section.row.iteration}</td>{/if}
 	{strip}
 	{section loop=$records[row] name=item}
-		{if !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < (count($records[row]) + $VAL_ENDOFFSET)}
+		{if !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < ($records[row]|count + $VAL_ENDOFFSET)}
 			<td class="{$columns[$smarty.section.item.index].type}">
 			{if $smarty.section.item.index == $wo_id_ordinal || $smarty.section.item.index == $seq_ordinal}<a href="{$URL_MAIN_PHP}?menuAction=WorkOrder.Detail&jcn={$records[row][$wo_id_ordinal]}&seq={$records[row][$seq_ordinal]}">{$records[row][item]}</a>
 			{elseif $smarty.section.item.index == $tag_ordinal && $records[row][$num_tags_ordinal] > 1}{dcl_get_entity_tags entity=$smarty.const.DCL_ENTITY_WORKORDER key_id=$records[row][$wo_id_ordinal] key_id2=$records[row][$seq_ordinal] link=Y}

@@ -1,4 +1,4 @@
-<h4>Time Cards <span class="badge{if count($VAL_TIMECARDS) > 0} alert-info{/if}">{$VAL_TIMECARDS|@count}</span>{if $PERM_ACTION}<a href="{$URL_MAIN_PHP}?menuAction=boTimecards.add&jcn={$VAL_JCN}&seq={$VAL_SEQ}" class="pull-right btn btn-success btn-xs" title="{$smarty.const.STR_CMMN_NEW|escape}">
+<h4>Time Cards <span class="badge{if $VAL_TIMECARDS|count > 0} alert-info{/if}">{$VAL_TIMECARDS|@count}</span>{if $PERM_ACTION}<a href="{$URL_MAIN_PHP}?menuAction=boTimecards.add&jcn={$VAL_JCN}&seq={$VAL_SEQ}" class="pull-right btn btn-success btn-xs" title="{$smarty.const.STR_CMMN_NEW|escape}">
 		<span class="glyphicon glyphicon-plus"></span>
 	</a>{/if}</h4>
 {section name=tc loop=$VAL_TIMECARDS}
@@ -98,7 +98,7 @@
 		</div>{/if}
 	</div>
 {/section}
-{if $PERM_DELETE_TC && count($VAL_TIMECARDS) > 0}<script>
+{if $PERM_DELETE_TC && $VAL_TIMECARDS|count > 0}<script>
 	$(function() {
 		$(".dcl-delete-tc").click(function(event) {
 			event.preventDefault();

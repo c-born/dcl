@@ -40,7 +40,7 @@
 							</ul>
 						</div>
 					</div>
-					{if $VAL_PROJECTS && count($VAL_PROJECTS) > 0}
+					{if $VAL_PROJECTS && $VAL_PROJECTS|count > 0}
 						<h4>{$smarty.const.STR_PRJ_PARENTPRJ|escape}</h4>
 						<div class="btn-group">
 						{section name=project loop=$VAL_PROJECTS}

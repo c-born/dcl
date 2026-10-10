@@ -28,7 +28,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr><th colspan="17"><div class="btn-group">
-				{if count($VAL_TASKS) > 0}
+				{if $VAL_TASKS|count > 0}
 				<a class="btn btn-default" href="javascript:forceSubmit('WorkOrder.BatchDetail');">Detail</a>
 				<a class="btn btn-default" href="javascript:forceSubmit('boTimecards.batchadd');">Time Card</a>
 				<a class="btn btn-default" href="javascript:forceSubmit('WorkOrder.BatchReassign');">Assign</a>

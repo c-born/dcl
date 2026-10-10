@@ -6,7 +6,7 @@
 	<div class="panel-body">
 		<ul id="tabs" class="nav nav-tabs">
 			<li class="active"><a href="#workorder" data-toggle="tab">Work Order</a></li>
-			<li><a href="#files" data-toggle="tab">Files <span class="badge{if count($VAL_ATTACHMENTS) > 0} alert-info{/if}">{$VAL_ATTACHMENTS|@count}</span></a></li>
+			<li><a href="#files" data-toggle="tab">Files <span class="badge{if $VAL_ATTACHMENTS|count > 0} alert-info{/if}">{$VAL_ATTACHMENTS|@count}</span></a></li>
 			{include file="WorkOrderOptionsControl.tpl"}
 		</ul>
 		<div id="navTabContent" class="tab-content">
@@ -46,7 +46,7 @@
 								</div>
 
 							{/if}
-							{if count($VAL_ORGS) > 0}
+							{if $VAL_ORGS|count > 0}
 								<h4>{$smarty.const.STR_CMMN_ORGANIZATION} <span class="badge alert-info">{$VAL_ORGS|@count}</span></h4>
 								{section name=org loop=$VAL_ORGS}
 									{if $PERM_VIEWORG}<a href="{$URL_MAIN_PHP}?menuAction=Organization.Detail&org_id={$VAL_ORGS[org].org_id}">{/if}{$VAL_ORGS[org].org_name|escape}{if $PERM_VIEWORG}</a>{/if}

@@ -1,4 +1,4 @@
-<h4>Ticket Resolutions <span class="badge{if count($VAL_RESOLUTIONS) > 0} alert-info{/if}">{$VAL_RESOLUTIONS|@count}</span>{if $PERM_ACTION}<a href="{$URL_MAIN_PHP}?menuAction=boTicketresolutions.add&ticketid={$VAL_TICKETID}" class="pull-right btn btn-success btn-xs" title="{$smarty.const.STR_CMMN_NEW|escape}">
+<h4>Ticket Resolutions <span class="badge{if $VAL_RESOLUTIONS|count > 0} alert-info{/if}">{$VAL_RESOLUTIONS|@count}</span>{if $PERM_ACTION}<a href="{$URL_MAIN_PHP}?menuAction=boTicketresolutions.add&ticketid={$VAL_TICKETID}" class="pull-right btn btn-success btn-xs" title="{$smarty.const.STR_CMMN_NEW|escape}">
 		<span class="glyphicon glyphicon-plus"></span>
 	</a>{/if}</h4>
 {section name=tr loop=$VAL_RESOLUTIONS}
@@ -81,7 +81,7 @@
 			</div>{/if}
 	</div>
 {/section}
-{if $PERM_DELETE_TR && count($VAL_TIMECARDS) > 0}<script>
+{if $PERM_DELETE_TR && $VAL_TIMECARDS|count > 0}<script>
 	$(function() {
 		$(".dcl-delete-tr").click(function(event) {
 			event.preventDefault();

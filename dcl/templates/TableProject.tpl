@@ -61,7 +61,7 @@
 			{$columns[$groupcol].title|escape}&nbsp;[&nbsp;{$records[row][$groupcol]|escape}&nbsp;]&nbsp;
 			{if $smarty.section.group.last}</td></tr>{/if}
 		{/section}
-	{/strip}{elseif count($groups) > 0}{strip}
+	{/strip}{elseif $groups|count > 0}{strip}
 		{assign var=newgroup value=false}
 		{foreach from=$groups item=value key=key}
 			{if $records[row][$value] != $records[row.index_prev][$value]}

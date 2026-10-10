@@ -38,7 +38,7 @@
 			{$columns[$groupcol].title|escape}&nbsp;[&nbsp;{$records[row][$groupcol]|escape}&nbsp;]&nbsp;
 			{if $smarty.section.group.last}</td></tr>{/if}
 		{/section}
-	{/strip}{elseif count($groups) > 0}{strip}
+	{/strip}{elseif $groups|count > 0}{strip}
 		{assign var=newgroup value=false}
 		{foreach from=$groups item=value key=key}
 			{if $records[row][$value] != $records[row.index_prev][$value]}
@@ -60,7 +60,7 @@
 	{if $checks}{assign var=woid value=$groupcount}{assign var=seq value=$groupcount+1}<td class="rowcheck"><input type="checkbox" name="selected[]" value="{$records[row][$woid]}.{$records[row][$seq]}"></td>{/if}
 	{if $rownum}<td class="rownum">{$smarty.section.row.iteration}</td>{/if}
 	{section loop=$records[row] name=item}
-		{if $smarty.section.item.index != 1 && $smarty.section.item.index != 2 && !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < (count($records[row]) + $VAL_ENDOFFSET)}<td class="{$columns[$smarty.section.item.index].type}">
+		{if $smarty.section.item.index != 1 && $smarty.section.item.index != 2 && !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < ($records[row]|count + $VAL_ENDOFFSET)}<td class="{$columns[$smarty.section.item.index].type}">
 		{if $smarty.section.item.index == 0}
 			{if $records[row][0] == $smarty.const.DCL_ENTITY_WORKORDER}<a href="{$URL_MAIN_PHP}?menuAction=WorkOrder.Detail&jcn={$records[row][1]}&seq={$records[row][2]}">{$records[row][1]|escape}-{$records[row][2]|escape}</a>
 			{elseif $records[row][0] == $smarty.const.DCL_ENTITY_TICKET}<a href="{$URL_MAIN_PHP}?menuAction=boTickets.view&ticketid={$records[row][1]}">{$records[row][1]|escape}</a>

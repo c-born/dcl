@@ -27,7 +27,7 @@
 {/section}
 	</tbody>
 </table>
-{if (count($VAL_AUDITPROJECT) > 0)}
+{if ($VAL_AUDITPROJECT|count > 0)}
 <h4>Project Audit</h4>
 <table class="table table-striped">
 	<thead>
@@ -48,7 +48,7 @@
 	</tbody>
 </table>
 {/if}
-{if (count($VAL_AUDITACCOUNT) > 0)}
+{if ($VAL_AUDITACCOUNT|count > 0)}
 <h4>Account Audit</h4>
 <table class="table table-striped">
 	<thead>
@@ -69,7 +69,7 @@
 	</tbody>
 </table>
 {/if}
-{if (count($VAL_AUDITWORKORDER) > 0)}
+{if ($VAL_AUDITWORKORDER|count > 0)}
 <h4>Task Audit</h4>
 <table class="table table-striped">
 	<thead>

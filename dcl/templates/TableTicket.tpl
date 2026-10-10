@@ -62,7 +62,7 @@
 			{$columns[$groupcol].title|escape}&nbsp;[&nbsp;{$records[row][$groupcol]|escape}&nbsp;]&nbsp;
 			{if $smarty.section.group.last}</td></tr>{/if}
 		{/section}
-	{/strip}{elseif count($groups) > 0}{strip}
+	{/strip}{elseif $groups|count > 0}{strip}
 		{assign var=newgroup value=false}
 		{foreach from=$groups item=value key=key}
 			{if $records[row][$value] != $records[row.index_prev][$value]}
@@ -83,7 +83,7 @@
 	<tr>
 	{if $checks}{assign var=ticketid value=$groupcount}<td class="rowcheck"><input type="checkbox" name="selected[]" value="{$records[row][$ticketid]}"></td>{/if}
 	{if $rownum}<td class="rownum">{$smarty.section.row.iteration}</td>{/if}
-	{section loop=$records[row] name=item}{if !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < (count($records[row]) + $VAL_ENDOFFSET)}<td class="{$columns[$smarty.section.item.index].type}">{if $columns[$smarty.section.item.index].type == "html"}{$records[row][item]}{else}{if $smarty.section.item.index < 1}<a href="{$URL_MAIN_PHP}?menuAction=boTickets.view&ticketid={$records[row][0]}">{$records[row][item]|escape}</a>{elseif $smarty.section.item.index == $tag_ordinal && $records[row][$num_tags_ordinal] > 1}{dcl_get_entity_tags entity=$smarty.const.DCL_ENTITY_TICKET key_id=$records[row][$ticket_id_ordinal] link=Y}{elseif $smarty.section.item.index == $tag_ordinal && $records[row][$num_tags_ordinal] == 1}{dcl_tag_link value=$records[row][item]}{else}{$records[row][item]|escape}{/if}{/if}</td>{/if}{/section}
+	{section loop=$records[row] name=item}{if !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < ($records[row]|count + $VAL_ENDOFFSET)}<td class="{$columns[$smarty.section.item.index].type}">{if $columns[$smarty.section.item.index].type == "html"}{$records[row][item]}{else}{if $smarty.section.item.index < 1}<a href="{$URL_MAIN_PHP}?menuAction=boTickets.view&ticketid={$records[row][0]}">{$records[row][item]|escape}</a>{elseif $smarty.section.item.index == $tag_ordinal && $records[row][$num_tags_ordinal] > 1}{dcl_get_entity_tags entity=$smarty.const.DCL_ENTITY_TICKET key_id=$records[row][$ticket_id_ordinal] link=Y}{elseif $smarty.section.item.index == $tag_ordinal && $records[row][$num_tags_ordinal] == 1}{dcl_tag_link value=$records[row][item]}{else}{$records[row][item]|escape}{/if}{/if}</td>{/if}{/section}
 	</tr>
 	{if $smarty.section.row.last}</tbody>{/if}
 {/section}

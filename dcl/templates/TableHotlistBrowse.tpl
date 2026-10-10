@@ -38,7 +38,7 @@
 			{$columns[$groupcol].title|escape}&nbsp;[&nbsp;{$records[row][$groupcol]|escape}&nbsp;]&nbsp;
 			{if $smarty.section.group.last}</td></tr>{/if}
 		{/section}
-	{elseif count($groups) > 0}
+	{elseif $groups|count > 0}
 		{assign var=newgroup value=false}
 		{foreach from=$groups item=value key=key}
 			{if $records[row][$value] != $records[row.index_prev][$value]}
@@ -63,7 +63,7 @@
 		{assign var=columnindex value=$smarty.section.item.index}
 		{if $columnindex > 2}{assign var=columnindex value=$columnindex-2}{/if}
 		{if $columnindex > 2}{assign var=columnindex value=$columnindex-1}{/if}
-		{if $smarty.section.item.index != 1 && $smarty.section.item.index != 2 && $smarty.section.item.index != 4 && !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < (count($records[row]) + $VAL_ENDOFFSET)}<td class="{$columns[$columnindex].type}">
+		{if $smarty.section.item.index != 1 && $smarty.section.item.index != 2 && $smarty.section.item.index != 4 && !in_array($smarty.section.item.index, $groups) && $smarty.section.item.index < ($records[row]|count + $VAL_ENDOFFSET)}<td class="{$columns[$columnindex].type}">
 		{if $columnindex == 0}
 			{if $records[row][0] == $smarty.const.DCL_ENTITY_WORKORDER}<a href="{$URL_MAIN_PHP}?menuAction=WorkOrder.Detail&jcn={$records[row][1]}&seq={$records[row][2]}">{$records[row][1]|escape}-{$records[row][2]|escape}</a>
 			{elseif $records[row][0] == $smarty.const.DCL_ENTITY_TICKET}<a href="{$URL_MAIN_PHP}?menuAction=boTickets.view&ticketid={$records[row][1]}">{$records[row][1]|escape}</a>

@@ -12,7 +12,7 @@
 	<div class="panel-body">
 		<ul id="tabs" class="nav nav-tabs">
 			<li class="active"><a href="#workorder" data-toggle="tab">Ticket</a></li>
-			<li><a href="#files" data-toggle="tab">Files <span class="badge{if count($VAL_ATTACHMENTS) > 0} alert-info{/if}">{$VAL_ATTACHMENTS|@count}</span></a></li>
+			<li><a href="#files" data-toggle="tab">Files <span class="badge{if $VAL_ATTACHMENTS|count > 0} alert-info{/if}">{$VAL_ATTACHMENTS|@count}</span></a></li>
 			{include file="TicketOptionsControl.tpl"}
 		</ul>
 		<div id="navTabContent" class="tab-content">

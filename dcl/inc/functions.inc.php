@@ -687,6 +687,11 @@ function ShowError($sMessage)
 
 function DclErrorLog($level, $message, $file, $line, $backTrace)
 {
+	static $logging = false;
+	if ($logging)
+		return null;		// an error while logging an error: give up instead of recursing
+
+	$logging = true;
 	try
 	{
         if (empty($message))
@@ -731,6 +736,10 @@ function DclErrorLog($level, $message, $file, $line, $backTrace)
 	catch (Exception $ex)
 	{
 		return null;
+	}
+	finally
+	{
+		$logging = false;
 	}
 }
 

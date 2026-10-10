@@ -254,6 +254,15 @@ class DbProvider extends AbstractDbProvider
 		if ($this->conn)
 		{
 			$this->res = sqlsrv_query($this->conn, $query);
+			if (!$this->res)
+			{
+				// do not try to log a failure of the error log itself
+				if (stripos($query, 'dcl_error_log') === false)
+					LogError("Error executing query: $query", __FILE__, __LINE__, debug_backtrace());
+
+				return -1;
+			}
+
 			$oidRes = sqlsrv_query($this->conn, 'SELECT @@identity');
 			if ($this->res || $oidRes)
 			{

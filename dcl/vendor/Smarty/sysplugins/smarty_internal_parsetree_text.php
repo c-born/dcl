@@ -16,24 +16,41 @@
  */
 class Smarty_Internal_ParseTree_Text extends Smarty_Internal_ParseTree
 {
+
+    /**
+     * Wether this section should be stripped on output to smarty php
+     * @var bool
+     */
+    private $toBeStripped = false;
+
     /**
      * Create template text buffer
      *
-     * @param object $parser parser object
-     * @param string $data   text
+     * @param string $data text
+     * @param bool $toBeStripped wether this section should be stripped on output to smarty php
      */
-    public function __construct($parser, $data)
+    public function __construct($data, $toBeStripped = false)
     {
-        $this->parser = $parser;
         $this->data = $data;
+        $this->toBeStripped = $toBeStripped;
+    }
+
+    /**
+     * Wether this section should be stripped on output to smarty php
+     * @return bool
+     */
+    public function isToBeStripped() {
+        return $this->toBeStripped;
     }
 
     /**
      * Return buffer content
      *
+     * @param \Smarty_Internal_Templateparser $parser
+     *
      * @return string text
      */
-    public function to_smarty_php()
+    public function to_smarty_php(Smarty_Internal_Templateparser $parser)
     {
         return $this->data;
     }

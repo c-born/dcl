@@ -33,7 +33,12 @@ class SmartyHelper extends Smarty
 		$this->assign('WWW_ROOT', DCL_WWW_ROOT);
 		$this->assign('URL_MAIN_PHP', menuLink());
 
-		$this->addPluginsDir(array(DCL_ROOT . 'vendor/Smarty/plugins', DCL_ROOT . 'inc/plugins'));
+		// Smarty 4 finds its own bundled plugins; only DCL's own plugin folder needs adding
+		$this->addPluginsDir(array(DCL_ROOT . 'inc/plugins'));
+
+		// PHP functions used directly in templates must be registered explicitly (deprecated in Smarty 4, an error in Smarty 5)
+		$this->registerPlugin('modifier', 'trim', 'trim');
+		$this->registerPlugin('modifier', 'is_numeric', 'is_numeric');
 
 		$this->error_reporting = E_ALL & ~E_NOTICE;
 	}

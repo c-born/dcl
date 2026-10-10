@@ -307,7 +307,8 @@ class boView
 	{
 		$this->Clear();
 
-		parse_str($strURL);
+		parse_str($strURL, $parsedUrl);
+		extract($parsedUrl);
 
 		if (IsSet($vt))
 			$this->table = $this->FixName($vt);

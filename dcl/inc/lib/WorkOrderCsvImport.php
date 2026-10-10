@@ -57,7 +57,7 @@ class WorkOrderCsvImport
 							break;
 						case 'module_id':
 							$moduleId = $val;
-							continue;
+							break; // was continue (acts as break inside switch); behaviour unchanged
 							break;
 						case 'account':
 							$newVal = $this->LookupId($workOrderModelTemp, 'accounts', $val);
@@ -113,8 +113,8 @@ class WorkOrderCsvImport
 				{
 					// This will ignore nonexisting members
 					// Only works in PHP4 because Clear() initializes each field!
-					if (isset($workOrderModel->$fields[$i]))
-						$workOrderModel->$fields[$i] = $val;
+					if (isset($workOrderModel->{$fields[$i]}))
+						$workOrderModel->{$fields[$i]} = $val;
 				}
 			}
 

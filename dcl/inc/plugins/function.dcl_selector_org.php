@@ -34,7 +34,7 @@ function smarty_function_dcl_selector_org($params, &$smarty)
 	if (!isset($params['value']))
 		$params['value'] = '';
 	else if (is_array($params['value']))
-		$params['value'] = join($params['value'], ',');
+		$params['value'] = implode(',', $params['value']);
 
 	if (!isset($params['decoded']))
 		$params['decoded'] = '';

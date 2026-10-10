@@ -227,7 +227,7 @@ class htmlContact
 			
 		if (count($aMergeContacts) > 0)
 		{
-			$sMergeContacts = join($aMergeContacts, ',');
+			$sMergeContacts = implode(',', $aMergeContacts);
 
 			// Merge orgs
 			$sSQL = 'SELECT org_id FROM dcl_org_contact WHERE contact_id IN (' . $sMergeContacts . ')';

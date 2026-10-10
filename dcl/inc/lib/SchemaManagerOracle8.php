@@ -763,7 +763,7 @@ class SchemaManagerOracle8
 
 	public function CreateIndex($oProc, $aTables, $sTableName, $sIndexName, $aColumns)
 	{
-		$sColumns = join($aColumns, ',');
+		$sColumns = implode(',', $aColumns);
 		$sSQL = "CREATE INDEX $sIndexName ON $sTableName ($sColumns)";
 		
 		return ($oProc->m_odb->Query($sSQL) != -1);

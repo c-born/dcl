@@ -47,7 +47,7 @@ class WorkOrderTimesheetModel extends DbProvider
 		}
 	}
 
-	public function Edit()
+	public function Edit($aIgnoreFields = '')
 	{
 		// nothing to do here - the whole thing is the key!
 	}

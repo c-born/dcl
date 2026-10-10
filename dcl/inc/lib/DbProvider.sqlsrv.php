@@ -177,7 +177,7 @@ class DbProvider extends AbstractDbProvider
 				$this->cur = $offset;
 				// Push cursor to appropriate row in case next_record() is used
 				if ($offset > 0)
-					@sqlsrv_fetch($this->res,SQLSRV_SCROLL_ABSOLUTE,$offset);
+					if (is_resource($this->res)) @sqlsrv_fetch($this->res,SQLSRV_SCROLL_ABSOLUTE,$offset);
 					//@sqlsrv_data_seek($this->res, $offset);
 
 				$this->vcur = $offset + $rows - 1;
@@ -281,7 +281,7 @@ class DbProvider extends AbstractDbProvider
 	{
 		$this->Record = array();
 		if ($this->res != 0)
-			@sqlsrv_free_stmt($this->res);
+			if (is_resource($this->res)) @sqlsrv_free_stmt($this->res);
 
 		$this->res = 0;
 	}
@@ -304,7 +304,7 @@ class DbProvider extends AbstractDbProvider
 	public function NumFields()
 	{
 		if ($this->res)
-			return sqlsrv_num_fields($this->res);
+			return is_resource($this->res) ? sqlsrv_num_fields($this->res) : 0;
 		else
 			return -1;
 	}
@@ -317,7 +317,7 @@ class DbProvider extends AbstractDbProvider
 			$this->cur = 0;
 
 		if ($this->vcur == -1 || ($this->cur++ <= $this->vcur))
-		$this->Record = @sqlsrv_fetch_array($this->res);	
+		$this->Record = is_resource($this->res) ? @sqlsrv_fetch_array($this->res) : null;	
 		//$this->Record = @sqlsrv_fetch_array($this->res,SQLSRV_FETCH_NUMERIC);//DAV
 		else
 			$this->Record = NULL;
@@ -332,7 +332,7 @@ class DbProvider extends AbstractDbProvider
 	public function GetFieldName($fieldIndex)
 	{
 		if ($this->res)
-			if($md = sqlsrv_field_metadata($this->res))
+			if(is_resource($this->res) && ($md = sqlsrv_field_metadata($this->res)))
 				return $md[$fieldIndex]["Name"];
 
 			//return sqlsrv_field_name($this->res, $fieldIndex);
@@ -348,7 +348,7 @@ class DbProvider extends AbstractDbProvider
 		if ($this->cur == -1)
 			$this->cur = 0;
 
-		while ($a = @sqlsrv_fetch_array($this->res,SQLSRV_FETCH_NUMERIC))
+		while (is_resource($this->res) && ($a = @sqlsrv_fetch_array($this->res,SQLSRV_FETCH_NUMERIC)))
 		{
 			$this->cur++;
 			$retVal[$i++] = $a;
@@ -394,7 +394,7 @@ class DbProvider extends AbstractDbProvider
 
 	private function sqlsrv_field_type($res, $vField)
 	{
-		if($md = sqlsrv_field_metadata($this->res))
+		if(is_resource($this->res) && ($md = sqlsrv_field_metadata($this->res)))
 			return $md[0]["Type"];
 		return '';
 	}

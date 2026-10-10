@@ -24,7 +24,7 @@ LoadStringResource('db');
 
 class WorkOrderTypeModel extends DbProvider
 {
-	public function WorkOrderTypeModel()
+	public function __construct()
 	{
 		parent::__construct();
 		$this->TableName = 'dcl_wo_type';

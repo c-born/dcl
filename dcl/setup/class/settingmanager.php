@@ -43,7 +43,7 @@ class setting_manager {
 
     var $sanitizer;
 
-    function setting_manager($post=false){
+    function __construct($post=false){
         $this->sanitizer =& TextSanitizer::getInstance();
         if($post){
             $this->readPost();

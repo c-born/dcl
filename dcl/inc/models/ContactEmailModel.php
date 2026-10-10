@@ -23,7 +23,7 @@
 LoadStringResource('db');
 class ContactEmailModel extends DbProvider
 {
-	public function ContactEmailModel()
+	public function __construct()
 	{
 		parent::__construct();
 		$this->TableName = 'dcl_contact_email';

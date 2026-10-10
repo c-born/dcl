@@ -83,7 +83,7 @@ class OutagePresenter
 			return;
 
 		$aRecords = $db->FetchAllRows();
-		for ($i = 0; $i < count($aRecords); $i++)
+		for ($i = 0; $i < dcl_count($aRecords); $i++)
 		{
 			if ($aRecords[$i][2] !== null)
 				$aRecords[$i][2] = 'SEV-' . $aRecords[$i][2];

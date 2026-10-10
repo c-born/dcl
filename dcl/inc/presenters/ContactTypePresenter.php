@@ -53,10 +53,10 @@ class ContactTypePresenter
 		if (HasPermission(DCL_ENTITY_ADMIN, DCL_PERM_VIEW))
 			$oTable->addToolbar(menuLink('', 'menuAction=SystemSetup.Index'), DCL_MENU_SYSTEMSETUP);
 
-		if (count($allRecs) > 0 && HasAnyPermission(DCL_ENTITY_CONTACTTYPE, array(DCL_PERM_MODIFY, DCL_PERM_DELETE)))
+		if (dcl_count($allRecs) > 0 && HasAnyPermission(DCL_ENTITY_CONTACTTYPE, array(DCL_PERM_MODIFY, DCL_PERM_DELETE)))
 		{
 			$oTable->addColumn(STR_CMMN_OPTIONS, 'html');
-			for ($i = 0; $i < count($allRecs); $i++)
+			for ($i = 0; $i < dcl_count($allRecs); $i++)
 			{
 				$options = '';
 				if (HasPermission(DCL_ENTITY_CONTACTTYPE, DCL_PERM_MODIFY))

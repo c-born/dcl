@@ -43,7 +43,7 @@ class OutageModel extends DbProvider
 		$sql .= "where OT.is_planned = 'N' and (O.outage_start < '" . DclDate::ToSql($endDate);
 		$sql .= "' and (O.outage_end is null or O.outage_end >= '" . DclDate::ToSql($startDate) . "')) ";
 
-		if (count($organizations) > 0)
+		if (dcl_count($organizations) > 0)
 		{
 			$sql .= "AND O.outage_id IN (SELECT outage_id FROM dcl_outage_org OO WHERE OO.org_id IN (" . join(',', $organizations) . ")) ";
 		}

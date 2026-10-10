@@ -81,7 +81,7 @@ class OrganizationModel extends DbProvider
 		
 		$aRetVal = array();
 		$sOrgID = '-1';
-		if (count($aOrgID) > 0)
+		if (dcl_count($aOrgID) > 0)
 			$sOrgID = join(',', $aOrgID);
 
 		$sSQL = "SELECT DISTINCT product_id FROM dcl_org_product_xref WHERE org_id IN ($sOrgID)";

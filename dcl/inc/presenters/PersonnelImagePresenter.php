@@ -69,7 +69,7 @@ class PersonnelImagePresenter
 			$iIndex++;
 		}
 
-		if (count($aCount) == 0)
+		if (dcl_count($aCount) == 0)
 		{
 			$aCount[] = 1;
 			$aItem[] = '0: No Matches';

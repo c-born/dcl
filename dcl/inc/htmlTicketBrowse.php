@@ -57,7 +57,7 @@ class htmlTicketBrowse
 
 		$oTable = new TableHtmlHelper();
 		$iEndOffset = 0;
-		for ($iColumn = count($oView->groups); $iColumn < $this->oDB->NumFields(); $iColumn++)
+		for ($iColumn = dcl_count($oView->groups); $iColumn < $this->oDB->NumFields(); $iColumn++)
 		{
 			$sFieldName = $this->oDB->GetFieldName($iColumn);
 			if ($sFieldName == 'ticketid')
@@ -75,7 +75,7 @@ class htmlTicketBrowse
 
 		$oTable->setData($this->oDB->FetchAllRows());
 		
-		for ($iColumn = 0; $iColumn < count($this->oView->groups); $iColumn++)
+		for ($iColumn = 0; $iColumn < dcl_count($this->oView->groups); $iColumn++)
 		{
 			$oTable->addGroup($iColumn);
 			$oTable->addColumn('');

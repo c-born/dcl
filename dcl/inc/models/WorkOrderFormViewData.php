@@ -165,7 +165,7 @@ class WorkOrderFormViewData
 			}
 		}
 		
-		if (count($organizationIds) > 0)
+		if (dcl_count($organizationIds) > 0)
 		{
 			$model->OrganizationIdCollection = $organizationIds;
 			$model->OrganizationNameCollection = $organizationNames;

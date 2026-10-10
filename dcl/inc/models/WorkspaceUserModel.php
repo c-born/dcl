@@ -34,7 +34,7 @@ class WorkspaceUserModel extends DbProvider
 	
 	public function serialize($workspace_id, $aUsers, $bAddOnly)
 	{
-		if (!is_array($aUsers) || count($aUsers) < 1)
+		if (!is_array($aUsers) || dcl_count($aUsers) < 1)
 		{
 			$aUsers = array();
 			$aUsers[] = -1;

@@ -277,7 +277,7 @@ class ProjectController
 	{
 		RequirePermission(DCL_ENTITY_PROJECT, DCL_PERM_ADDTASK);
 
-		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && count($_REQUEST['selected']) > 0)
+		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && dcl_count($_REQUEST['selected']) > 0)
 		{
 			$presenter = new ProjectPresenter();
 			$presenter->AddToProject($_REQUEST['selected'], null, 'Project.PostBatchMove', 'Batch Move Work Orders to Another Project');

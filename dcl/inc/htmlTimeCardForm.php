@@ -28,7 +28,7 @@ class htmlTimeCardForm
 	{
 		global $dcl_info, $g_oSec, $dcl_preferences;
 
-		$isBatch = is_array($selected) && count($selected) > 0;
+		$isBatch = is_array($selected) && dcl_count($selected) > 0;
 		$isEdit = is_object($obj) && !$isBatch; // Don't allow batch updates for now...
 
 		if ($isEdit && !$g_oSec->HasPerm(DCL_ENTITY_TIMECARD, DCL_PERM_MODIFY))

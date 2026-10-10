@@ -69,7 +69,7 @@ function smarty_function_dcl_metadata_display($params, &$smarty)
 			}
 			
 			$aProjects = ProjectsModel::GetProjectPath($params['value'], $params['value2']);
-			if (count($aProjects) > 0)
+			if (dcl_count($aProjects) > 0)
 			{
 				$sRetVal = '';
 				foreach ($aProjects as $aProject)
@@ -186,7 +186,7 @@ function smarty_function_dcl_metadata_display($params, &$smarty)
 				}
 			}
 			
-			if (count($aOrgNames) > 0)
+			if (dcl_count($aOrgNames) > 0)
 				return join('; ', $aOrgNames);
 				
 			return '';

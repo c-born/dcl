@@ -41,12 +41,12 @@ class htmlTicketResults
 		
 		$oTable->assign('VAL_VIEWSETTINGS', $oView->GetForm());
 		$aProducts = IsSet($_REQUEST['product']) ? Filter::ToIntArray($_REQUEST['product']) : array();
-		if ($aProducts !== null && count($aProducts) > 0)
+		if ($aProducts !== null && dcl_count($aProducts) > 0)
 			$oTable->assign('HID_PRODUCT', join(',', $aProducts));
 		else
 			$oTable->assign('HID_PRODUCT', '');
 
-		for ($iColumn = 0; $iColumn < count($oView->groups); $iColumn++)
+		for ($iColumn = 0; $iColumn < dcl_count($oView->groups); $iColumn++)
 		{
 			$oTable->addGroup($iColumn);
 			$oTable->addColumn('', 'string');
@@ -55,7 +55,7 @@ class htmlTicketResults
 		$iColumn = 0;
 		foreach ($oView->columnhdrs as $sColumn)
 		{
-			if ($iColumn++ < count($oView->groups))
+			if ($iColumn++ < dcl_count($oView->groups))
 				continue;
 				
 			$oTable->addColumn($sColumn, 'string');
@@ -81,7 +81,7 @@ class htmlTicketResults
 		if ($oDB->Query($sSQL) == -1)
 			return;
 
-		for ($iColumn = count($oView->groups); $iColumn < count($oView->columns) + count($oView->groups); $iColumn++)
+		for ($iColumn = dcl_count($oView->groups); $iColumn < dcl_count($oView->columns) + dcl_count($oView->groups); $iColumn++)
 		{
 			if ($oDB->GetFieldName($iColumn) == 'ticketid')
 			{
@@ -91,7 +91,7 @@ class htmlTicketResults
 		}
 		
 		$iOffset = 0;
-		for ($iColumn = count($oView->groups); $iColumn < $oDB->NumFields(); $iColumn++)
+		for ($iColumn = dcl_count($oView->groups); $iColumn < $oDB->NumFields(); $iColumn++)
 		{
 			$sFieldName = $oDB->GetFieldName($iColumn);
 			if ($sFieldName == '_num_tags_')

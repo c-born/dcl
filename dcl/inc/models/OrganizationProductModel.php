@@ -38,7 +38,7 @@ class OrganizationProductModel extends DbProvider
 			throw new PermissionDeniedException();
 			
 		$aProductID = Filter::ToIntArray($aProductID);
-		if ($aProductID === null || count($aProductID) == 0)
+		if ($aProductID === null || dcl_count($aProductID) == 0)
 			$aProductID = array("-1");
 			
 		$sProductID = join(',', $aProductID);

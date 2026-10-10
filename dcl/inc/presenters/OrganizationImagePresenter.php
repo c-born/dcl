@@ -69,7 +69,7 @@ class OrganizationImagePresenter
 			$index++;
 		}
 
-		if (count($itemCounts) == 0)
+		if (dcl_count($itemCounts) == 0)
 		{
 			$itemCounts[] = 1;
 			$items[] = '0: No Matches';

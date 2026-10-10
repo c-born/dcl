@@ -33,7 +33,7 @@ function smarty_function_dcl_hotlist_link($params, &$smarty)
 	$aHotlists = array();
 	if (is_array($params['value']))
 	{
-		if (count($params['value']) == 0)
+		if (dcl_count($params['value']) == 0)
 			return;
 
 		$aHotlists = $params['value'];
@@ -99,7 +99,7 @@ function smarty_function_dcl_hotlist_link($params, &$smarty)
 			echo '<span class="dcl-hotlist-actions">';
 			if (in_array($sHotlist, $aSelected))
 			{
-				if (count($aSelected) == 1)
+				if (dcl_count($aSelected) == 1)
 				{
 					echo ' <a href="' . DCL_WWW_ROOT . 'main.php?menuAction=Hotlist.Browse" title="Remove Filter"> <span class="glyphicon glyphicon-trash"></span></a>';
 				}

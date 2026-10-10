@@ -260,7 +260,7 @@ class boViews
 		$obj->Query($objView->GetSQL());
 
 		$record = '';
-		if (count($objView->columnhdrs) > 0)
+		if (dcl_count($objView->columnhdrs) > 0)
 		{
 			foreach ($objView->columnhdrs as $val)
 			{
@@ -281,7 +281,7 @@ class boViews
 		while ($obj->next_record())
 		{
 			$record = '';
-			for ($i = 0; $i < count($objView->columns); $i++)
+			for ($i = 0; $i < dcl_count($objView->columns); $i++)
 			{
 				$fieldName = $obj->GetFieldName($i);
 				if ($i > 0)
@@ -308,7 +308,7 @@ class boViews
 					{
 						$fieldValue = '';
 						$hotlists = $metadata->GetHotlistWithPriority(DCL_ENTITY_WORKORDER, $obj->f('jcn'), $obj->f('seq'));
-						if (is_array($hotlists) && count($hotlists) > 0)
+						if (is_array($hotlists) && dcl_count($hotlists) > 0)
 						{
 							foreach ($hotlists as $hotlistTag)
 							{

@@ -43,7 +43,7 @@ class DclMenuItem
 
 	public function HasItems()
 	{
-		return count($this->Items) > 0;
+		return dcl_count($this->Items) > 0;
 	}
 
 	public function GetItems()

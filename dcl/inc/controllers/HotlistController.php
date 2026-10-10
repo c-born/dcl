@@ -230,7 +230,7 @@ class HotlistController extends AbstractController
 		foreach ($_POST['item'] as $entity)
 		{
 			$aEntity = @Filter::ToIntArray(explode('_', $entity));
-			if (count($aEntity) === 3)
+			if (dcl_count($aEntity) === 3)
 			{
 				if (in_array($entity, $removeEntities))
 					$aRemoveEntities[] = $aEntity;

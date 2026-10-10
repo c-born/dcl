@@ -205,7 +205,7 @@ class ProjectMapModel extends DbProvider
 		{
 			$aRecords = $this->FetchAllRows();
 			$this->FreeResult();
-			for ($i = 0; $i < count($aRecords); $i++)
+			for ($i = 0; $i < dcl_count($aRecords); $i++)
 			{
 				if($projectids != '')
 					$projectids .= ',';
@@ -233,7 +233,7 @@ class ProjectMapModel extends DbProvider
 		{
 			$aRecords = $this->FetchAllRows();
 			$this->FreeResult();
-			for ($i = 0; $i < count($aRecords); $i++)
+			for ($i = 0; $i < dcl_count($aRecords); $i++)
 			{
 				if($projectids != '')
 					$projectids .= ',';

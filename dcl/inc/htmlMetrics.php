@@ -36,7 +36,7 @@ class htmlMetrics
 		$oTable->addColumn('User', 'html');
 		$oTable->addColumn('Commits', 'numeric');
 
-		for ($i = 0; $i < count($aRecords); $i++)
+		for ($i = 0; $i < dcl_count($aRecords); $i++)
 		{
 			$aRecords[$i][1] = '<a href="' . menuLink('', 'menuAction=htmlChangeLog.ShowRepositoryCommits&personnel_id=' . $aRecords[$i][0]) . '">' . $aRecords[$i][1] . '</a>';
 		}

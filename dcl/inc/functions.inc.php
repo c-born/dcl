@@ -124,6 +124,15 @@ define('DCL_NOW', 'now()');
 
 LoadStringResource('menu');
 
+// count() that behaves like PHP 7.2 on null and scalars (0 and 1) instead of throwing a TypeError in PHP 8
+function dcl_count($value, $mode = COUNT_NORMAL)
+{
+	if (is_array($value) || $value instanceof Countable)
+		return count($value, $mode);
+
+	return $value === null ? 0 : 1;
+}
+
 function DclClassAutoLoader($className)
 {
 	if (file_exists(DCL_ROOT . 'inc/' . $className . '.php'))

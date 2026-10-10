@@ -237,7 +237,7 @@ class htmlWorkOrderTask
 		$aTaskList = @Filter::ToIntArray($_REQUEST['task']);
 		$oDB = new WorkOrderTaskModel();
 		$iOrder = 1;
-		for ($i = 0; $i < count($aTaskList); $i++)
+		for ($i = 0; $i < dcl_count($aTaskList); $i++)
 		{
 			$iID = $aTaskList[$i];
 			$oDB->Execute("UPDATE dcl_wo_task SET task_order = $iOrder WHERE wo_task_id = $iID AND wo_id = $wo_id AND seq = $seq");

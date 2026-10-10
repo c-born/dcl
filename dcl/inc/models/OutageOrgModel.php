@@ -45,7 +45,7 @@ class OutageOrgModel extends DbProvider
 
 	public function DeleteOrgsForOutage($outageId, array $orgIds)
 	{
-		if (count($orgIds) == 0)
+		if (dcl_count($orgIds) == 0)
 			return;
 
 		$this->Query('DELETE FROM dcl_outage_org WHERE outage_id = ' . (int)$outageId . ' AND org_id IN (' . join(',', $orgIds) . ')');

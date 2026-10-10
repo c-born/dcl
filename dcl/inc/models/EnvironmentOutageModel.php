@@ -46,7 +46,7 @@ class EnvironmentOutageModel extends DbProvider
 
 	public function DeleteEnvironmentsForOutage($outageId, array $environmentIds)
 	{
-		if (count($environmentIds) == 0)
+		if (dcl_count($environmentIds) == 0)
 			return;
 
 		$this->Query('DELETE FROM dcl_outage_environment WHERE outage_id = ' . (int)$outageId . ' AND environment_id IN (' . join(',', $environmentIds) . ')');

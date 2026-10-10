@@ -34,7 +34,7 @@ class WorkspaceProductModel extends DbProvider
 	
 	public function serialize($workspace_id, $aProducts, $bAddOnly)
 	{
-		if (!is_array($aProducts) || count($aProducts) < 1)
+		if (!is_array($aProducts) || dcl_count($aProducts) < 1)
 		{
 			$aProducts = array();
 			$aProducts[] = -1;

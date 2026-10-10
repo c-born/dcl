@@ -85,10 +85,10 @@ class TicketResolutionsModel extends DbProvider
 
 		$aRetVal = $this->ResultToArray();
 
-		if (count($aRetVal) > 0)
+		if (dcl_count($aRetVal) > 0)
 		{
 			$oMeta = new DisplayHelper();
-			for ($i = 0; $i < count($aRetVal); $i++)
+			for ($i = 0; $i < dcl_count($aRetVal); $i++)
 			{
 				$aRetVal[$i]['time'] = $this->GetHoursText($aRetVal[$i]['startedon'], $aRetVal[$i]['loggedon']);
 				$aRetVal[$i]['loggedon'] = $this->FormatDateForDisplay($aRetVal[$i]['loggedon']);

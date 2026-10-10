@@ -30,7 +30,7 @@ class AuditModel
 		$aDiff = array();
 		
 		// Diff returns something only if we have a trail
-		if (count($aAuditTrail) > 1)
+		if (dcl_count($aAuditTrail) > 1)
 		{
 			$aLastRecord = array();
 			$iIndex = 0;

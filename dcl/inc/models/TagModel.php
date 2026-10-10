@@ -63,7 +63,7 @@ class TagModel extends DbProvider
 			
 		$sTags = trim(mb_strtolower($sTags));
 		$aTags = explode(',', $sTags);
-		if (count($aTags) < 1)
+		if (dcl_count($aTags) < 1)
 			return '-1';
 			
 		$sTagValues = '';
@@ -127,11 +127,11 @@ class TagModel extends DbProvider
 		if (!$hasTickets)
 			$restrictedEntities[] = DCL_ENTITY_TICKET;
 
-		if (count($restrictedEntities) == 2)
+		if (dcl_count($restrictedEntities) == 2)
 			throw new PermissionDeniedException();
 
 		$hasWhereClause = false;
-		if (count($restrictedEntities) == 1)
+		if (dcl_count($restrictedEntities) == 1)
 		{
 			$sSQL .= ' WHERE et.entity_id != ' . $restrictedEntities[0];
 			$hasWhereClause = true;

@@ -171,7 +171,7 @@ abstract class AbstractDbProvider
 	{
 		if ($this->res)
 		{
-			if (count($this->Record) > 0)
+			if (dcl_count($this->Record) > 0)
 				return $this->Record[$thisField] == NULL;
 
 			return ($this->GetField($thisField) == '');
@@ -604,7 +604,7 @@ abstract class AbstractDbProvider
 			}
 		}
 
-		if ($this->AuditEnabled && count($aPK) > 0)
+		if ($this->AuditEnabled && dcl_count($aPK) > 0)
 			$this->Audit($aPK);
 
 		$sql = sprintf('UPDATE %s SET %s WHERE %s', $this->TableName, $sFd, $sPK);
@@ -633,7 +633,7 @@ abstract class AbstractDbProvider
 			$bFirstPK = false;
 		}
 
-		if ($this->AuditEnabled && count($aPK) > 0)
+		if ($this->AuditEnabled && dcl_count($aPK) > 0)
 			$this->Audit($aPK);
 
 		$sql = sprintf('DELETE FROM %s WHERE %s', $this->TableName, $sPK);
@@ -804,12 +804,12 @@ abstract class AbstractDbProvider
 	 */
 	public function GetRow()
 	{
-		if (count($this->Record) > 0)
+		if (dcl_count($this->Record) > 0)
 		{
 			foreach ($GLOBALS['phpgw_baseline'][$this->TableName]['fd'] as $sFieldName => $aFieldInfo)
 				$this->$sFieldName = $this->FieldValueFromSQL($sFieldName, $this->f($sFieldName));
 
-			if ($this->cacheEnabled && count($GLOBALS['phpgw_baseline'][$this->TableName]['pk']) == 1)
+			if ($this->cacheEnabled && dcl_count($GLOBALS['phpgw_baseline'][$this->TableName]['pk']) == 1)
 			{
 				$sPK = $GLOBALS['phpgw_baseline'][$this->TableName]['pk'][0];
 				$this->CacheRow($this->$sPK);

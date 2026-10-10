@@ -141,13 +141,13 @@ class WorkOrderController
 			if (IsSet($_REQUEST['secaccounts']) && $_REQUEST['secaccounts'] != '')
 			{
 				$aAccounts = explode(',', $_REQUEST['secaccounts']);
-				if (count($aAccounts) > 0)
+				if (dcl_count($aAccounts) > 0)
 				{
 					$workOrderOrganizationModel = new WorkOrderOrganizationModel();
 					$workOrderOrganizationModel->wo_id = $workOrderModel->jcn;
 					$workOrderOrganizationModel->seq = $workOrderModel->seq;
 
-					for ($i = 0; $i < count($aAccounts); $i++)
+					for ($i = 0; $i < dcl_count($aAccounts); $i++)
 					{
 						if (($organizationId = Filter::ToInt($aAccounts[$i])) !== null && $organizationId > 0)
 						{
@@ -336,12 +336,12 @@ class WorkOrderController
 			$workOrderOrgModel->DeleteByWorkOrder($workOrderModel->jcn, $workOrderModel->seq, join(',', $organizationCollection));
 			
 			// Add the new ones
-			if (count($organizationCollection) > 0)
+			if (dcl_count($organizationCollection) > 0)
 			{
 				$workOrderOrgModel->wo_id = $workOrderModel->jcn;
 				$workOrderOrgModel->seq = $workOrderModel->seq;
 
-				for ($i = 0; $i < count($organizationCollection); $i++)
+				for ($i = 0; $i < dcl_count($organizationCollection); $i++)
 				{
 					if ($organizationCollection[$i] > 0)
 					{
@@ -438,7 +438,7 @@ class WorkOrderController
 			}
 		}
 
-		$rubricScore = (int)(($rubricScore / (count($existingScores) * 3)) * 100);
+		$rubricScore = (int)(($rubricScore / (dcl_count($existingScores) * 3)) * 100);
 		if ($rubricScore != $woModel->rubric_score)
 		{
 			$woModel->rubric_score = $rubricScore;
@@ -634,7 +634,7 @@ class WorkOrderController
 		RequirePost();
 		RequirePermission(DCL_ENTITY_WORKORDER, DCL_PERM_ASSIGN);
 
-		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && count($_REQUEST['selected']) > 0)
+		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && dcl_count($_REQUEST['selected']) > 0)
 		{
 			$watches = new boWatches();
 			$workOrderModel = new WorkOrderModel();
@@ -820,7 +820,7 @@ class WorkOrderController
 		$import = new WorkOrderCsvImport();
 		$newIds = $import->Import($fileName);
 
-		if (count($newIds) > 0)
+		if (dcl_count($newIds) > 0)
 		{
 			// Display imported work orders
 			$sqlQueryHelper = new WorkOrderSqlQueryHelper();

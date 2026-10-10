@@ -112,7 +112,7 @@ abstract class AbstractSqlQueryHelper
 	{
 		$retVal = '';
 
-		if (count($arr) > 0)
+		if (dcl_count($arr) > 0)
 		{
 			$retVal = $field . '=';
 			$bFirst = true;
@@ -123,9 +123,9 @@ abstract class AbstractSqlQueryHelper
 					if ($bFirst == false)
 						$retVal .= ',';
 
-					if (count($value) > 0)
+					if (dcl_count($value) > 0)
 					{
-						$retVal .= $key . ',' . count($value);
+						$retVal .= $key . ',' . dcl_count($value);
 						foreach ($value as $key => $realVal)
 						{
 							if ($encode)
@@ -160,31 +160,31 @@ abstract class AbstractSqlQueryHelper
 		$retVal .= '&vs=' . $this->style;
 		if ($this->title != '')
 			$retVal .= '&vti=' . rawurlencode($this->title);
-		if (count($this->columns) > 0)
+		if (dcl_count($this->columns) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vc', $this->columns);
-		if (count($this->columnhdrs) > 0)
+		if (dcl_count($this->columnhdrs) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vch', $this->columnhdrs);
-		if (count($this->groups) > 0)
+		if (dcl_count($this->groups) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vg', $this->groups);
-		if (count($this->order) > 0)
+		if (dcl_count($this->order) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vo', $this->order);
-		if (count($this->filter) > 0)
+		if (dcl_count($this->filter) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vf', $this->filter);
-		if (count($this->filternot) > 0)
+		if (dcl_count($this->filternot) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfn', $this->filternot);
-		if (count($this->filterdate) > 0)
+		if (dcl_count($this->filterdate) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfd', $this->filterdate);
-		if (count($this->filterlike) > 0)
+		if (dcl_count($this->filterlike) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfl', $this->filterlike);
-		if (count($this->filterstart) > 0)
+		if (dcl_count($this->filterstart) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfs', $this->filterstart);
 
@@ -208,7 +208,7 @@ abstract class AbstractSqlQueryHelper
 
 		foreach ($arrItems as $attr => $arr)
 		{
-			if (count($this->$arr) > 0)
+			if (dcl_count($this->$arr) > 0)
 			{
 				list($var, $val) = explode('=', $this->GetURLArray($attr, $this->$arr, false));
 				$retVal .= $this->GetFormElement($var, $val);
@@ -450,9 +450,9 @@ abstract class AbstractSqlQueryHelper
 		reset($arr);
 		$retVal = '';
 
-		if (count($arr) > 0)
+		if (dcl_count($arr) > 0)
 		{
-			if ($appendTableForJoin == true && count($this->joins) > 0)
+			if ($appendTableForJoin == true && dcl_count($this->joins) > 0)
 			{
 			    foreach ($arr as $key => $field)
 				{
@@ -597,7 +597,7 @@ abstract class AbstractSqlQueryHelper
 	{
 		global $dcl_info, $g_oSec;
 
-		if (count($arr) > 0)
+		if (dcl_count($arr) > 0)
 		{
 			$joinon = '';
 			$i = 0;
@@ -790,7 +790,7 @@ abstract class AbstractSqlQueryHelper
 
 	protected function GetWhereSqlForField($field, $values)
 	{
-		if (count($values) == 1)
+		if (dcl_count($values) == 1)
 			return "($field=" . $this->GetCSLFromArray($values) . ')';
 
 		return "($field in (" . $this->GetCSLFromArray($values) . '))';
@@ -859,9 +859,9 @@ abstract class AbstractSqlQueryHelper
 		}
 		else
 		{
-			if (count($this->columns) > 0 || count($this->groups) > 0)
+			if (dcl_count($this->columns) > 0 || dcl_count($this->groups) > 0)
 			{
-				if (count($this->groups) > 0)
+				if (dcl_count($this->groups) > 0)
 				{
 					$aGroups = $this->groups;
 					foreach ($aGroups as $key => $group)
@@ -876,9 +876,9 @@ abstract class AbstractSqlQueryHelper
 					$sql .= $this->GetCSLFromArray($aGroups, true);
 				}
 
-				if (count($this->columns) > 0)
+				if (dcl_count($this->columns) > 0)
 				{
-					if (count($this->groups) > 0)
+					if (dcl_count($this->groups) > 0)
 						$sql .= ",";
 
 					$sql .= $this->GetCSLFromArray($this->columns, true, true);
@@ -895,7 +895,7 @@ abstract class AbstractSqlQueryHelper
 		$bDoneDidWhere = false;
 
 		// Add joins, if any
-		if (count($this->joins) > 0)
+		if (dcl_count($this->joins) > 0)
 		{
 			$joinsql = '';
 
@@ -944,7 +944,7 @@ abstract class AbstractSqlQueryHelper
 		$bOrgFilter = false;
 		$bProductFilter = false;
 		$bFirst = true;
-		if (count($this->filter) > 0)
+		if (dcl_count($this->filter) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -969,7 +969,7 @@ abstract class AbstractSqlQueryHelper
 
 					$sJCNSQL = '';
 					$sJCNSEQSQL = '';
-					$iNumValues = count($values);
+					$iNumValues = dcl_count($values);
 					for ($i = 0; $i < $iNumValues; $i++)
 					{
 						$sValue = $values[$i];
@@ -1003,7 +1003,7 @@ abstract class AbstractSqlQueryHelper
 					if ($g_oSec->IsOrgUser() || $g_oSession->IsInWorkspace())
 					{
 						$values = array_intersect($values, $g_oSession->GetProductFilter());
-						if (count($values) == 0)
+						if (dcl_count($values) == 0)
 							$values[] = -1;
 					}
 
@@ -1135,7 +1135,7 @@ abstract class AbstractSqlQueryHelper
 						{
 							$aOrgs = explode(',', $sOrgs);
 							$values = array_intersect($values, $aOrgs);
-							if (count($values) == 0)
+							if (dcl_count($values) == 0)
 								$values = array('-1');
 						}
 						else
@@ -1162,7 +1162,7 @@ abstract class AbstractSqlQueryHelper
 						{
 							$aOrgs = explode(',', $sOrgs);
 							$values = array_intersect($values, $aOrgs);
-							if (count($values) == 0)
+							if (dcl_count($values) == 0)
 								$values = array('-1');
 						}
 						else
@@ -1221,17 +1221,17 @@ abstract class AbstractSqlQueryHelper
 		if ($closedbySQL != '')
 			$arrPersonnel[] = $closedbySQL;
 
-		if (count($arrPersonnel) > 0)
+		if (dcl_count($arrPersonnel) > 0)
 		{
 			if ($bFirst == false)
 				$sql .= ' AND ';
 
 			$bFirst = false;
 
-			if (count($arrPersonnel) > 1)
+			if (dcl_count($arrPersonnel) > 1)
 			{
 				$sql .= '(';
-				for ($i = 0; $i < count($arrPersonnel); $i++)
+				for ($i = 0; $i < dcl_count($arrPersonnel); $i++)
 				{
 					if ($i > 0)
 						$sql .= ' OR ';
@@ -1244,7 +1244,7 @@ abstract class AbstractSqlQueryHelper
 				$sql .= $arrPersonnel[0];
 		}
 
-		if (count($this->filternot) > 0)
+		if (dcl_count($this->filternot) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1265,7 +1265,7 @@ abstract class AbstractSqlQueryHelper
 					$sql .= ' AND ';
 
 				$bFirst = false;
-				if (count($values) == 1)
+				if (dcl_count($values) == 1)
 					$sql .= "($field!=" . $this->GetCSLFromArray($values) . ')';
 				else
 					$sql .= "($field not in (" . $this->GetCSLFromArray($values) . '))';
@@ -1274,7 +1274,7 @@ abstract class AbstractSqlQueryHelper
 
 		$objWO = new WorkOrderModel();
 
-		if (count($this->filterdate) > 0)
+		if (dcl_count($this->filterdate) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1306,7 +1306,7 @@ abstract class AbstractSqlQueryHelper
 			$sql .= ')';
 		}
 
-		if (count($this->filterlike) > 0)
+		if (dcl_count($this->filterlike) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1333,7 +1333,7 @@ abstract class AbstractSqlQueryHelper
 			$sql .= ')';
 		}
 
-		if (count($this->filterstart) > 0)
+		if (dcl_count($this->filterstart) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1365,15 +1365,15 @@ abstract class AbstractSqlQueryHelper
 		$sql .= $this->GetWhereSqlForOrganizationUser($bOrgFilter, $bDoneDidWhere);
 		$sql .= $this->GetWhereSqlForOrgWorkspace($bOrgFilter, $bProductFilter, $bDoneDidWhere);
 
-		if (!$bCount && (count($this->order) > 0 || count($this->groups) > 0))
+		if (!$bCount && (dcl_count($this->order) > 0 || dcl_count($this->groups) > 0))
 		{
 			$sql .= ' ORDER BY ';
-			if (count($this->order) > 0 && count($this->groups) > 0)
+			if (dcl_count($this->order) > 0 && dcl_count($this->groups) > 0)
 			{
 				$groupsAndOrder = array_merge($this->groups, $this->order);
 				$sql .= $this->GetCSLFromArray($groupsAndOrder, true, false, true);
 			}
-			else if (count($this->groups) > 0)
+			else if (dcl_count($this->groups) > 0)
 				$sql .= $this->GetCSLFromArray($this->groups, true, false, true);
 			else
 				$sql .= $this->GetCSLFromArray($this->order, true, false, true);

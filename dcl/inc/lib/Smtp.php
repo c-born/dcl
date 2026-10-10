@@ -158,7 +158,7 @@ class Smtp
 
 		if (is_array($this->to))
 		{
-			for ($i = 0; $i < count($this->to); $i++)
+			for ($i = 0; $i < dcl_count($this->to); $i++)
 			{
 				if (empty($this->to[$i]) || trim($this->to[$i])=='<>')
 					continue;
@@ -204,7 +204,7 @@ class Smtp
 		$this->oSocket->Write('Subject: ' . $this->subject . phpCrLf);
 		if (is_array($this->headers))
 		{
-			for ($i = 0; $i < count($this->headers); $i++)
+			for ($i = 0; $i < dcl_count($this->headers); $i++)
 				$this->oSocket->Write($this->headers[$i] . phpCrLf);
 		}
 		elseif ($this->headers != '')

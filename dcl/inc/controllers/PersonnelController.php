@@ -68,7 +68,7 @@ class PersonnelController
 		$model->Add();
 
 		$aRoles = @Filter::ToIntArray($_POST['roles']);
-		if (count($aRoles) > 0)
+		if (dcl_count($aRoles) > 0)
 		{
 			// Set up global user roles
 			$oUserRole = new UserRoleModel();
@@ -119,7 +119,7 @@ class PersonnelController
 		$oUserRole->DeleteGlobalRolesNotIn($model->id);
 		
 		$aRoles = @Filter::ToIntArray($_REQUEST['roles']);
-		if (count($aRoles) > 0)
+		if (dcl_count($aRoles) > 0)
 		{
 			// Set up global user roles
 			$oUserRole->personnel_id = $model->id;

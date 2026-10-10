@@ -168,7 +168,7 @@ class RubricController
 				$deletedIds[] = $criteria['rubric_criteria_id'];
 		}
 
-		if (count($deletedIds) > 0)
+		if (dcl_count($deletedIds) > 0)
 		{
 			$rubricCriteriaModel = new RubricCriteriaModel();
 			$rubricCriteriaModel->DeleteCollection($deletedIds);

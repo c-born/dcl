@@ -51,7 +51,7 @@ class boContact extends boAdminObject
 		
 		$sTypes = join(',', $aSource['contact_type_id']);
 		$sql = 'DELETE FROM dcl_contact_type_xref WHERE contact_id = ' . $aSource['contact_id'];
-		if (count($aSource['contact_type_id']) > 0)
+		if (dcl_count($aSource['contact_type_id']) > 0)
 			$sql .= ' AND contact_type_id NOT IN (' . $sTypes . ')';
 
 		$this->oDB->Execute($sql);

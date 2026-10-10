@@ -201,7 +201,7 @@ class SessionModel extends DbProvider
 		
 		if ($this->IsInWorkspace())
 		{
-			if (count($aProducts) > 0)
+			if (dcl_count($aProducts) > 0)
 				$aProducts = array_intersect($aProducts, explode(',', $this->Value('workspace_products')));
 			else
 				$aProducts = explode(',', $this->Value('workspace_products'));

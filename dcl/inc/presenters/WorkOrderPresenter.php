@@ -589,7 +589,7 @@ class WorkOrderPresenter
 					$aDefault[$field] = $values;
 			}
 
-			if (isset($aDefault['personnel']) && is_array($aDefault['personnel']) && count($aDefault['personnel']) > 0)
+			if (isset($aDefault['personnel']) && is_array($aDefault['personnel']) && dcl_count($aDefault['personnel']) > 0)
 			{
 				$sPersonnel = implode(',', $aDefault['personnel']);
 				$personnelModel->Query("select department, id from personnel where id in ($sPersonnel)");
@@ -605,7 +605,7 @@ class WorkOrderPresenter
 				}
 			}
 
-			if (isset($aDefault['status']) && is_array($aDefault['status']) && count($aDefault['status']) > 0)
+			if (isset($aDefault['status']) && is_array($aDefault['status']) && dcl_count($aDefault['status']) > 0)
 			{
 				$sStatus = implode(',', $aDefault['status']);
 				$personnelModel->Query("select dcl_status_type, id from statuses where id in ($sStatus)");
@@ -621,7 +621,7 @@ class WorkOrderPresenter
 				}
 			}
 
-			if (isset($aDefault['module_id']) && is_array($aDefault['module_id']) && count($aDefault['module_id']) > 0)
+			if (isset($aDefault['module_id']) && is_array($aDefault['module_id']) && dcl_count($aDefault['module_id']) > 0)
 			{
 				$sModule = implode(',', $aDefault['module_id']);
 				$personnelModel->Query("select product_id, product_module_id from dcl_product_module where product_module_id in ($sModule)");
@@ -721,7 +721,7 @@ class WorkOrderPresenter
 		$smartyHelper->assign('CHK_NOTES', '');
 		$smartyHelper->assign('CHK_DESCRIPTION', '');
 		$smartyHelper->assign('VAL_SEARCHTEXT', '');
-		if ($haveCriteria && count($filterLike) > 0)
+		if ($haveCriteria && dcl_count($filterLike) > 0)
 		{
 			$searchText = '';
 			foreach ($filterLike as $field => $values)
@@ -736,23 +736,23 @@ class WorkOrderPresenter
 			$smartyHelper->assign('VAL_SEARCHTEXT', $searchText);
 		}
 		
-		if (isset($filter['dcl_tag.tag_desc']) && is_array($filter['dcl_tag.tag_desc']) && count($filter['dcl_tag.tag_desc']) > 0)
+		if (isset($filter['dcl_tag.tag_desc']) && is_array($filter['dcl_tag.tag_desc']) && dcl_count($filter['dcl_tag.tag_desc']) > 0)
 			$smartyHelper->assign('VAL_TAGS', join(',', $filter['dcl_tag.tag_desc']));
 
-		if (isset($filter['dcl_hotlist.hotlist_tag']) && is_array($filter['dcl_hotlist.hotlist_tag']) && count($filter['dcl_hotlist.hotlist_tag']) > 0)
+		if (isset($filter['dcl_hotlist.hotlist_tag']) && is_array($filter['dcl_hotlist.hotlist_tag']) && dcl_count($filter['dcl_hotlist.hotlist_tag']) > 0)
 			$smartyHelper->assign('VAL_HOTLISTS', join(',', $filter['dcl_hotlist.hotlist_tag']));
 
 		$aDateChecks = array('createdon', 'closedon', 'statuson', 'lastactionon',
 							'deadlineon', 'eststarton', 'estendon', 'starton');
 
-		for ($i = 0; $i < count($aDateChecks); $i++)
+		for ($i = 0; $i < dcl_count($aDateChecks); $i++)
 			$smartyHelper->assign('CHK_' . mb_strtoupper($aDateChecks[$i]), '');
 
 		if ($haveCriteria)
 		{
 			$smartyHelper->assign('VAL_DATEFROM', '');
 			$smartyHelper->assign('VAL_DATETO', '');
-			if (count($filterDate) > 0)
+			if (dcl_count($filterDate) > 0)
 			{
 				$fromDate = '';
 				$toDate = '';
@@ -986,7 +986,7 @@ class WorkOrderPresenter
 		if ($viewData->ContactId > 0)
 		{
 			$aContact =& $oMeta->GetContact($viewData->ContactId);
-			if (is_array($aContact) && count($aContact) > 1)
+			if (is_array($aContact) && dcl_count($aContact) > 1)
 				$viewData->ContactName = $aContact['name'];
 			else
 				$viewData->ContactId = '';
@@ -1000,14 +1000,14 @@ class WorkOrderPresenter
 		if ($viewData->OrganizationId > 0)
 		{
 			$aOrg =& $oMeta->GetOrganization($viewData->OrganizationId);
-			if (is_array($aOrg) && count($aOrg) > 0)
+			if (is_array($aOrg) && dcl_count($aOrg) > 0)
 			{
 				$aOrgID[] = $viewData->OrganizationId;
 				$aOrgName[] = $aOrg['name'];
 			}
 		}
 
-		if (count($aOrgID) > 0)
+		if (dcl_count($aOrgID) > 0)
 		{
 			$viewData->OrganizationIdCollection = $aOrgID;
 			$viewData->OrganizationNameCollection = $aOrgName;
@@ -1048,7 +1048,7 @@ class WorkOrderPresenter
 		if ($viewData->ContactId > 0)
 		{
 			$aContact =& $metaData->GetContact($viewData->ContactId);
-			if (is_array($aContact) && count($aContact) > 1)
+			if (is_array($aContact) && dcl_count($aContact) > 1)
 				$viewData->ContactName = $aContact['name'];
 			else
 				$viewData->ContactId = '';
@@ -1081,7 +1081,7 @@ class WorkOrderPresenter
 		$oTable = new TableHtmlHelper();
 		$oTable->assign('VAL_VIEWSETTINGS', $sqlQueryHelper->GetForm());
 			
-		for ($iColumn = 0; $iColumn < count($sqlQueryHelper->groups); $iColumn++)
+		for ($iColumn = 0; $iColumn < dcl_count($sqlQueryHelper->groups); $iColumn++)
 		{
 			$oTable->addGroup($iColumn);
 			$oTable->addColumn('', 'string');
@@ -1090,7 +1090,7 @@ class WorkOrderPresenter
 		$iColumn = 0;
 		foreach ($sqlQueryHelper->columnhdrs as $sColumn)
 		{
-			if ($iColumn++ < count($sqlQueryHelper->groups))
+			if ($iColumn++ < dcl_count($sqlQueryHelper->groups))
 				continue;
 				
 			$oTable->addColumn($sColumn, 'string');
@@ -1121,7 +1121,7 @@ class WorkOrderPresenter
 			return;
 
 		$iOffset = 0;
-		for ($iColumn = count($sqlQueryHelper->groups); $iColumn < $oDB->NumFields(); $iColumn++)
+		for ($iColumn = dcl_count($sqlQueryHelper->groups); $iColumn < $oDB->NumFields(); $iColumn++)
 		{
 			$sFieldName = $oDB->GetFieldName($iColumn);
 			if ($sFieldName == 'jcn')
@@ -1151,7 +1151,7 @@ class WorkOrderPresenter
 			{
 				$oTable->assign('hotlist_ordinal', $iColumn);
 			}
-			else if ($sqlQueryHelper->columns[$iColumn - count($sqlQueryHelper->groups)] == 'dcl_org.name')
+			else if ($sqlQueryHelper->columns[$iColumn - dcl_count($sqlQueryHelper->groups)] == 'dcl_org.name')
 			{
 				$oTable->assign('org_ordinal', $iColumn);
 			}

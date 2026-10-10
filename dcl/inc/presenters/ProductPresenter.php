@@ -78,7 +78,7 @@ class ProductPresenter
 		if ($g_oSec->HasPerm(DCL_ENTITY_ADMIN, DCL_PERM_VIEW))
 			$oTable->addToolbar(menuLink('', 'menuAction=SystemSetup.Index'), DCL_MENU_SYSTEMSETUP);
 
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$allRecs[$i][1] = $allRecs[$i][1] == 'Y' ? STR_CMMN_YES : STR_CMMN_NO;
 			$allRecs[$i][8] = $allRecs[$i][8] == 'Y' ? STR_CMMN_YES : STR_CMMN_NO;

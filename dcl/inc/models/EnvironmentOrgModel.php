@@ -45,7 +45,7 @@ class EnvironmentOrgModel extends DbProvider
 	public function GetOrganizationIdsByEnvironments($timestamp, array $environmentId)
 	{
 		$environmentIds = Filter::ToIntArray($environmentId);
-		if ($environmentIds == null || count($environmentIds) == 0)
+		if ($environmentIds == null || dcl_count($environmentIds) == 0)
 			return null;
 
 		$sql = 'SELECT org_id FROM dcl_environment_org WHERE environment_id IN (' . join(',', $environmentIds) . ') AND ';

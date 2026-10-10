@@ -75,7 +75,7 @@ foreach ($aModuleNodes as $oModuleNode)
 			$aHaveLangs[$sThisLang] = true;
 		}
 
-		if (count($aHaveLangs) < count($aLangs))
+		if (dcl_count($aHaveLangs) < dcl_count($aLangs))
 		{
 			// Missing some, so write defaults
 			foreach ($aLangs as $sThisLang)

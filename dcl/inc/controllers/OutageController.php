@@ -69,7 +69,7 @@ class OutageController
 		$model->Add();
 
 		// Add any referenced environments
-		if ($environments != null && count($environments) > 0)
+		if ($environments != null && dcl_count($environments) > 0)
 		{
 			$envOutage = new EnvironmentOutageModel();
 			$envOutage->outage_id = $model->outage_id;
@@ -100,7 +100,7 @@ class OutageController
 		}
 
 		// Add referenced organizations
-		if ($organizations != null && count($organizations) > 0)
+		if ($organizations != null && dcl_count($organizations) > 0)
 		{
 			$orgOutage = new OutageOrgModel();
 			$orgOutage->outage_id = $model->outage_id;
@@ -180,7 +180,7 @@ class OutageController
 		$removedEnvironments = array_values(array_diff($originalEnvironments, $environments));
 
 		// Add any new environments
-		if (count($newEnvironments) > 0)
+		if (dcl_count($newEnvironments) > 0)
 		{
 			$envOutage->outage_id = $model->outage_id;
 			$envOutage->create_dt = DCL_NOW;
@@ -197,7 +197,7 @@ class OutageController
 		$envOutage->DeleteEnvironmentsForOutage($model->outage_id, $removedEnvironments);
 
 		// If the outage has started, we need to make sure any orgs on selected environments are in sync
-		if ($model->outage_start != '' && ($originalStart == '' || count($newEnvironments) > 0 || count($removedEnvironments) > 0))
+		if ($model->outage_start != '' && ($originalStart == '' || dcl_count($newEnvironments) > 0 || dcl_count($removedEnvironments) > 0))
 		{
 			$envOrgModel = new EnvironmentOrgModel();
 			$envOrgs = $envOrgModel->GetOrganizationIdsByEnvironments($model->outage_start, $environments);
@@ -228,7 +228,7 @@ class OutageController
 		$removedOrgs = array_values(array_diff($originalOrgs, $organizations));
 
 		// Add new organizations
-		if (count($newOrgs) > 0)
+		if (dcl_count($newOrgs) > 0)
 		{
 			$orgOutage->outage_id = $model->outage_id;
 			$orgOutage->create_dt = DCL_NOW;

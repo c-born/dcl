@@ -42,7 +42,7 @@ class WorkOrderService
 		{
 			$db->LimitQuery($querySql, $sqlQueryHelper->startrow, $sqlQueryHelper->numrows);
 			$retVal->records = $db->FetchAllRows();
-			$retVal->count = count($retVal->records);
+			$retVal->count = dcl_count($retVal->records);
 		}
 		else
 		{

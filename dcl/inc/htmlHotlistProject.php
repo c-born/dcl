@@ -149,14 +149,14 @@ class htmlHotlistProject
 			$allRecs = $this->entityHotlist->FetchAllRows();
 			$this->entityHotlist->FreeResult();
 
-			if (count($allRecs) > 0)
+			if (dcl_count($allRecs) > 0)
 			{
 				$aTasks = array();
 
 				$objWOAcct = new WorkOrderOrganizationModel();
 				$oDate = new DateHelper;
 
-				for ($i = 0; $i < count($allRecs); $i++)
+				for ($i = 0; $i < dcl_count($allRecs); $i++)
 				{
 					$oDate->SetFromDB($allRecs[$i][8]);
 					$ouHours = -($allRecs[$i][11] - $allRecs[$i][9]);

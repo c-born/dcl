@@ -719,7 +719,7 @@ class boTickets
 		$objView = new boView();
 		$objView->table = 'tickets';
 
-		if (count($personnel) > 0 || count($department) > 0)
+		if (dcl_count($personnel) > 0 || dcl_count($department) > 0)
 		{
 			$fieldList = array('responsible', 'createdby', 'closedby');
 			$bStrippedDepartments = false;
@@ -729,7 +729,7 @@ class boTickets
 				if (!isset($_REQUEST[$field]) || $_REQUEST[$field] != '1')
 					continue;
 					
-				if (count($personnel) > 0)
+				if (dcl_count($personnel) > 0)
 				{
 					if (!$bStrippedDepartments)
 					{
@@ -740,8 +740,8 @@ class boTickets
 						foreach ($personnel as $encoded_pers)
 						{
 							list($dpt_id, $pers_id) = explode(',', $encoded_pers);
-							$pers_sel[count($pers_sel)] = $pers_id;
-							if (count($department) > 0 && in_array($dpt_id, $department))
+							$pers_sel[dcl_count($pers_sel)] = $pers_id;
+							if (dcl_count($department) > 0 && in_array($dpt_id, $department))
 							{
 								foreach ($department as $key => $department_id)
 								{
@@ -756,11 +756,11 @@ class boTickets
 					}
 
 					$pers_sel = Filter::ToIntArray($pers_sel);
-					if (count($pers_sel) > 0)
+					if (dcl_count($pers_sel) > 0)
 						$objView->AddDef('filter', $field, $pers_sel);
 				}
 
-				if (count($department) > 0)
+				if (dcl_count($department) > 0)
 					$objView->AddDef('filter', $field . '.department', $department);
 			}
 		}
@@ -769,20 +769,20 @@ class boTickets
 		foreach ($fieldList as $key => $field)
 		{
 			$$field = Filter::ToIntArray($$field);
-			if (count($$field) > 0)
+			if (dcl_count($$field) > 0)
 				$objView->AddDef('filter', $field, $$field);
 		}
 
 		if (trim($tags) != '')
 			$objView->AddDef('filter', 'dcl_tag.tag_desc', $tags);
 
-		if (count($is_public) > 0)
+		if (dcl_count($is_public) > 0)
 		{
 			foreach ($is_public as $publicValue)
 				$objView->AddDef('filter', 'is_public', $oDB->Quote(Filter::ToYN($publicValue)));
 		}
 
-		if (count($module_id) > 0)
+		if (dcl_count($module_id) > 0)
 		{
 			// Have modules?  If so, only set module IDs for their associated products instead of the product ID
 			// then unset the product id from the array
@@ -790,8 +790,8 @@ class boTickets
 			foreach ($module_id as $encoded_mod)
 			{
 				list($mod_prod_id, $mod_id) = explode(',', $encoded_mod);
-				$module[count($module)] = $mod_id;
-				if (count($product) > 0 && in_array($mod_prod_id, $product))
+				$module[dcl_count($module)] = $mod_id;
+				if (dcl_count($product) > 0 && in_array($mod_prod_id, $product))
 				{
 					foreach ($product as $key => $product_id)
 					{
@@ -805,14 +805,14 @@ class boTickets
 			}
 
 			$module = Filter::ToIntArray($module);
-			if (count($module) > 0)
+			if (dcl_count($module) > 0)
 				$objView->AddDef('filter', 'module_id', $module);
 		}
 
-		if (count($product) > 0)
+		if (dcl_count($product) > 0)
 			$objView->AddDef('filter', 'product', $product);
 
-		if (count($status) > 0)
+		if (dcl_count($status) > 0)
 		{
 			// Have statuses?  If so, only set status IDs for their associated types instead of the status type ID
 			// then unset the status type id from the array
@@ -822,8 +822,8 @@ class boTickets
 				list($type_id, $status_id) = explode(',', $encoded_status);
 				if (($type_id = Filter::ToInt($type_id)) !== null && ($status_id = Filter::ToInt($status_id)) !== null)
 				{
-					$statuses[count($statuses)] = $status_id;
-					if (count($dcl_status_type) > 0 && in_array($type_id, $dcl_status_type))
+					$statuses[dcl_count($statuses)] = $status_id;
+					if (dcl_count($dcl_status_type) > 0 && in_array($type_id, $dcl_status_type))
 					{
 						foreach ($dcl_status_type as $key => $status_type_id)
 						{
@@ -840,7 +840,7 @@ class boTickets
 			$objView->AddDef('filter', 'status', $statuses);
 		}
 
-		if (count($dcl_status_type) > 0)
+		if (dcl_count($dcl_status_type) > 0)
 			$objView->AddDef('filter', 'statuses.dcl_status_type', $dcl_status_type);
 			
 		if ($dateFrom !== null || $dateTo !== null)
@@ -870,13 +870,13 @@ class boTickets
 			$objView->AddDef('filterlike', 'summary', $searchText);
 		}
 
-		if (count($columns) > 0)
+		if (dcl_count($columns) > 0)
 			$objView->AddDef('columns', '', $columns);
 		else
 			$objView->AddDef('columns', '',
 				array('ticketid', 'responsible', 'product', 'account', 'status', 'contact', 'contactphone', 'summary'));
 
-		if (count($groups) > 0)
+		if (dcl_count($groups) > 0)
 		{
 			foreach ($groups as $key => $groupField)
 			{
@@ -889,10 +889,10 @@ class boTickets
 			$objView->AddDef('groups', '', $groups);
 		}
 
-		if (count($columnhdrs) > 0)
+		if (dcl_count($columnhdrs) > 0)
 			$objView->AddDef('columnhdrs', '', $columnhdrs);
 
-		if (count($order) > 0)
+		if (dcl_count($order) > 0)
 		{
 			foreach ($order as $key => $orderField)
 			{

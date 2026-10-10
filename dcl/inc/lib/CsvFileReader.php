@@ -47,7 +47,7 @@ class CsvFileReader
         if ($this->bFirstLineHeader)
         {
             $this->aHeaderRecord = fgetcsv($this->hFile, $this->iMaxLineLength, $this->sDelimiter, $this->sQualifier);
-            for ($i = 0; $i < count($this->aHeaderRecord); $i++)
+            for ($i = 0; $i < dcl_count($this->aHeaderRecord); $i++)
                 $this->aHeaderRecord[trim($this->aHeaderRecord[$i])] = $i;
         }
     }

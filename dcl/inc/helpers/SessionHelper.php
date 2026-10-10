@@ -26,7 +26,7 @@ class SessionHelper
 	{
 		global $g_oSession, $dcl_info, $g_oSec;
 
-		if (!isset($dcl_info) || !is_array($dcl_info) || count($dcl_info) == 0)
+		if (!isset($dcl_info) || !is_array($dcl_info) || dcl_count($dcl_info) == 0)
 		{
 			$oConfig = new ConfigurationModel();
 			$dcl_info = array();
@@ -76,7 +76,7 @@ class SessionHelper
 				// Also grab the filtered product list for the orgs
 				$oOrg = new OrganizationModel();
 				$aProducts = $oOrg->GetProductArray($aOrgs);
-				if (count($aProducts) == 0)
+				if (dcl_count($aProducts) == 0)
 					$aProducts = array('-1');
 
 				$g_oSession->Register('org_products', join(',', $aProducts));

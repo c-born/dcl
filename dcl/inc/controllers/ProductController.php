@@ -213,9 +213,9 @@ class ProductController extends AbstractController
 
 		$bFirst = true;
 		echo '{';
-		echo '"totalRecords":', count($aOptions), ',';
+		echo '"totalRecords":', dcl_count($aOptions), ',';
 		echo '"data":[';
-		for ($i = 0; $i < count($aOptions); $i++)
+		for ($i = 0; $i < dcl_count($aOptions); $i++)
 		{
 			if ($i > 0)
 				echo ',';

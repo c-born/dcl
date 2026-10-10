@@ -57,7 +57,7 @@ class WorkOrderTaskModel extends DbProvider
 		$this->Query('SELECT ' . $this->SelectAllColumns() . " FROM dcl_wo_task WHERE wo_id = $wo_id AND seq = $seq ORDER BY $sOrder");
 
 		$aRetVal = $this->ResultToArray();
-		for ($i = 0; $i < count($aRetVal); $i++)
+		for ($i = 0; $i < dcl_count($aRetVal); $i++)
 		{
 			$aRetVal[$i]['task_create_dt'] = $this->FormatTimeStampForDisplay($aRetVal[$i]['task_create_dt']);
 			if ($aRetVal[$i]['task_complete_dt'] !== null)

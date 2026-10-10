@@ -89,7 +89,7 @@ class WorkOrderOrganizationModel extends DbProvider
 
 	public function GetRow()
 	{
-		if (!$this->res || count($this->Record) < 1)
+		if (!$this->res || dcl_count($this->Record) < 1)
 			return -1;
 
 		$this->wo_id = $this->f('wo_id');

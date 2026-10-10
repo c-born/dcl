@@ -268,7 +268,7 @@ class DisplayHelper
 			}
 			
 			$aOrg = $this->oContact->GetFirstOrg($id);
-			if (count($aOrg) > 0)
+			if (dcl_count($aOrg) > 0)
 			{
 				$aRetVal['org_id'] = $aOrg['org_id'];
 				$aRetVal['org_name'] = $aOrg['name'];

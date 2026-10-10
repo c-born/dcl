@@ -126,7 +126,7 @@ class htmlTicketSearches
 					$aDefault[$field] = $values;
 			}
 
-			if (is_array($aDefault['personnel']) && count($aDefault['personnel']) > 0)
+			if (is_array($aDefault['personnel']) && dcl_count($aDefault['personnel']) > 0)
 			{
 				$sPersonnel = implode(',', $aDefault['personnel']);
 				$oDBP->Query("select department, id from personnel where id in ($sPersonnel)");
@@ -142,7 +142,7 @@ class htmlTicketSearches
 				}
 			}
 
-			if (is_array($aDefault['status']) && count($aDefault['status']) > 0)
+			if (is_array($aDefault['status']) && dcl_count($aDefault['status']) > 0)
 			{
 				$sStatus = implode(',', $aDefault['status']);
 				$oDBP->Query("select dcl_status_type, id from statuses where id in ($sStatus)");
@@ -158,7 +158,7 @@ class htmlTicketSearches
 				}
 			}
 
-			if (is_array($aDefault['module_id']) && count($aDefault['module_id']) > 0)
+			if (is_array($aDefault['module_id']) && dcl_count($aDefault['module_id']) > 0)
 			{
 				$sModule = implode(',', $aDefault['module_id']);
 				$oDBP->Query("select product_id, product_module_id from dcl_product_module where product_module_id in ($sModule)");
@@ -264,7 +264,7 @@ class htmlTicketSearches
 		}
 
 		$t->assign('VAL_SEARCHTEXT', '');
-		if ($bView && count($oView->filterlike) > 0)
+		if ($bView && dcl_count($oView->filterlike) > 0)
 		{
 			$searchText = '';
 			foreach ($oView->filterlike as $field => $values)
@@ -273,19 +273,19 @@ class htmlTicketSearches
 			$t->assign('VAL_SEARCHTEXT', $searchText);
 		}
 
-		if (isset($oView->filter['dcl_tag.tag_desc']) && is_array($oView->filter['dcl_tag.tag_desc']) && count($oView->filter['dcl_tag.tag_desc']) > 0)
+		if (isset($oView->filter['dcl_tag.tag_desc']) && is_array($oView->filter['dcl_tag.tag_desc']) && dcl_count($oView->filter['dcl_tag.tag_desc']) > 0)
 			$t->assign('VAL_TAGS', join(',', $oView->filter['dcl_tag.tag_desc']));
 
 		$aDateChecks = array('createdon', 'closedon', 'statuson', 'lastactionon');
 
-		for ($i = 0; $i < count($aDateChecks); $i++)
+		for ($i = 0; $i < dcl_count($aDateChecks); $i++)
 			$t->assign('CHK_' . mb_strtoupper($aDateChecks[$i]), '');
 
 		if ($bView)
 		{
 			$t->assign('VAL_DATEFROM', '');
 			$t->assign('VAL_DATETO', '');
-			if (count($oView->filterdate) > 0)
+			if (dcl_count($oView->filterdate) > 0)
 			{
 				$fromDate = '';
 				$toDate = '';

@@ -102,9 +102,9 @@ abstract class Filter
 		else
 			$aArray = explode(',', $vValue);
 
-		if (count($aArray) > 0)
+		if (dcl_count($aArray) > 0)
 		{
-			for ($i = 0; $i < count($aArray); $i++)
+			for ($i = 0; $i < dcl_count($aArray); $i++)
 			{
 				if (($iVal = Filter::ToInt($aArray[$i])) !== null)
 				{

@@ -44,7 +44,7 @@ class HotlistModel extends DbProvider
 
 		$sTags = trim(mb_strtolower($sTags));
 		$aTags = explode(',', $sTags);
-		if (count($aTags) < 1)
+		if (dcl_count($aTags) < 1)
 			return null;
 
 		$sTagValues = '';
@@ -108,7 +108,7 @@ class HotlistModel extends DbProvider
 			
 		$sTags = trim(mb_strtolower($sTags));
 		$aTags = explode(',', $sTags);
-		if (count($aTags) < 1)
+		if (dcl_count($aTags) < 1)
 			return '-1';
 			
 		$sTagValues = '';

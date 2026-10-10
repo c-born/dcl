@@ -56,10 +56,10 @@ class WorkOrderTypePresenter
 		if ($g_oSec->HasPerm(DCL_ENTITY_ADMIN, DCL_PERM_VIEW))
 			$oTable->addToolbar(menuLink('', 'menuAction=SystemSetup.Index'), DCL_MENU_SYSTEMSETUP);
 
-		if (count($allRecs) > 0 && $g_oSec->HasAnyPerm(array(DCL_ENTITY_WORKORDERTYPE => array($g_oSec->PermArray(DCL_PERM_MODIFY), $g_oSec->PermArray(DCL_PERM_DELETE)))))
+		if (dcl_count($allRecs) > 0 && $g_oSec->HasAnyPerm(array(DCL_ENTITY_WORKORDERTYPE => array($g_oSec->PermArray(DCL_PERM_MODIFY), $g_oSec->PermArray(DCL_PERM_DELETE)))))
 		{
 			$oTable->addColumn(STR_CMMN_OPTIONS, 'html');
-			for ($i = 0; $i < count($allRecs); $i++)
+			for ($i = 0; $i < dcl_count($allRecs); $i++)
 			{
 				$options = '';
 				if ($g_oSec->HasPerm(DCL_ENTITY_WORKORDERTYPE, DCL_PERM_MODIFY))

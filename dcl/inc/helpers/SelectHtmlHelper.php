@@ -76,7 +76,7 @@ class SelectHtmlHelper
 
 	public function AddOption($sValue, $sDisplay, array $extraData = null)
 	{
-		$i = count($this->Options);
+		$i = dcl_count($this->Options);
 		$this->Options[$i] = array();
 		$this->Options[$i][0] = $this->CastToInt ? (int)$sValue : $sValue;
 		$this->Options[$i][1] = $sDisplay;
@@ -105,8 +105,8 @@ class SelectHtmlHelper
 		if ($this->Size < 2 && $this->FirstOption != '')
 			$sHtml .= $this->GetOption($this->FirstOptionValue, $this->FirstOption);
 
-		for ($i = 0; $i < count($this->Options); $i++)
-			$sHtml .= $this->GetOption($this->Options[$i][0], $this->Options[$i][1], count($this->Options[$i]) > 2 ? $this->Options[$i][2] : null);
+		for ($i = 0; $i < dcl_count($this->Options); $i++)
+			$sHtml .= $this->GetOption($this->Options[$i][0], $this->Options[$i][1], dcl_count($this->Options[$i]) > 2 ? $this->Options[$i][2] : null);
 
 		$sHtml .= '</select>';
 

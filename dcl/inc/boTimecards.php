@@ -139,12 +139,12 @@ class boTimecards
 				$oWOA->DeleteByWorkOrder($workOrderModel->jcn, $workOrderModel->seq, join(',', $aAccounts));
 				
 				// Add the new ones
-				if (count($aAccounts) > 0)
+				if (dcl_count($aAccounts) > 0)
 				{
 					$oWOA->wo_id = $workOrderModel->jcn;
 					$oWOA->seq = $workOrderModel->seq;
 	
-					for ($i = 0; $i < count($aAccounts); $i++)
+					for ($i = 0; $i < dcl_count($aAccounts); $i++)
 					{
 						if ($aAccounts[$i] > 0)
 						{
@@ -208,7 +208,7 @@ class boTimecards
 		if (!$g_oSec->HasPerm(DCL_ENTITY_WORKORDER, DCL_PERM_ACTION))
 			throw new PermissionDeniedException();
 
-		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && count($_REQUEST['selected']) > 0)
+		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && dcl_count($_REQUEST['selected']) > 0)
 		{
 			$aSelected = array();
 			foreach ($_REQUEST['selected'] as $key => $val)
@@ -224,7 +224,7 @@ class boTimecards
 			}
 		}
 
-		if (count($aSelected) > 0)
+		if (dcl_count($aSelected) > 0)
 		{
 			$objTC = new htmlTimeCardForm();
 			$objTC->Show(-1, -1, '', $aSelected);
@@ -275,7 +275,7 @@ class boTimecards
 		
 		$workOrderModel = new WorkOrderModel();
 		$objWtch = new boWatches();
-		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && count($_REQUEST['selected']) > 0)
+		if (IsSet($_REQUEST['selected']) && is_array($_REQUEST['selected']) && dcl_count($_REQUEST['selected']) > 0)
 		{
     		$bProcessTags = (isset($_REQUEST['tags']) && trim($_REQUEST['tags']) != '' && $g_oSec->HasPerm(DCL_ENTITY_WORKORDER, DCL_PERM_MODIFY));
         	$oTag = new EntityTagModel();

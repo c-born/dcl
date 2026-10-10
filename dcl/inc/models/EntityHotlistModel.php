@@ -85,7 +85,7 @@ class EntityHotlistModel extends DbProvider
 			}
 		}
 		
-		if (count($aHotlistID) < 1)
+		if (dcl_count($aHotlistID) < 1)
 			$aHotlistID[] = -1;
 			
 		$sHotlistID = join(',', $aHotlistID);
@@ -232,7 +232,7 @@ class EntityHotlistModel extends DbProvider
 		}
 		
 		$aHotlists = @Filter::ToIntArray($sID);
-		$iHotlistCount = count($aHotlists);
+		$iHotlistCount = dcl_count($aHotlists);
 		if ($iHotlistCount === 0)
 		{
 			throw new PermissionDeniedException();

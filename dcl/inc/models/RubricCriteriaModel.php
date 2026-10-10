@@ -38,7 +38,7 @@ class RubricCriteriaModel extends DbProvider
 	public function DeleteCollection(array $idList)
 	{
 		$ids = Filter::ToIntArray($idList);
-		if (count($ids) == 0)
+		if (dcl_count($ids) == 0)
 			return;
 
 		$idSql = join(',', $ids);

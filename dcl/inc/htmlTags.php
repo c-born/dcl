@@ -58,7 +58,7 @@ class htmlTags
 		$oTable->addColumn(STR_CMMN_TAGS, 'html');
 		$oTable->addColumn('Count', 'numeric');
 		
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$allRecs[$i][0] = '<a class="dcl-tag" href="' . menuLink('', 'menuAction=htmlTags.browse&tag=' . urlencode($allRecs[$i][0])) . '">' . htmlspecialchars($allRecs[$i][0], ENT_QUOTES, 'UTF-8') . '</a>';
 		}
@@ -94,7 +94,7 @@ class htmlTags
 		$oTable->addColumn(STR_CMMN_TAGS, 'string');
 		
 		$oTagDB = new EntityTagModel();
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$sTags = $oTagDB->getTagsForEntity($allRecs[$i][0], $allRecs[$i][1], $allRecs[$i][2]);
 			$allRecs[$i][] = $sTags;

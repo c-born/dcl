@@ -271,7 +271,7 @@ class PersonnelModel extends DbProvider
 		if ($dcl_info['DCL_PASSWORD_REQUIRE_SYMBOL'] == 'Y')
 			$rules[] = 'symbol';
 
-		return '{field} must contain ' . $dcl_info['DCL_PASSWORD_REQUIRE_THRESHOLD'] . ' of the following ' . count($rules) . ' characters: ' . join(', ', $rules);
+		return '{field} must contain ' . $dcl_info['DCL_PASSWORD_REQUIRE_THRESHOLD'] . ' of the following ' . dcl_count($rules) . ' characters: ' . join(', ', $rules);
 	}
 
 	public static function GetPasswordHistoryInfo()

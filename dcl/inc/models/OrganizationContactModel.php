@@ -38,7 +38,7 @@ class OrganizationContactModel extends DbProvider
 			throw new PermissionDeniedException();
 			
 		$aOrgID = Filter::ToIntArray($aOrgID);
-		if ($aOrgID === null || count($aOrgID) == 0)
+		if ($aOrgID === null || dcl_count($aOrgID) == 0)
 			$aOrgID = array("-1");
 			
 		$sOrgID = join(',', $aOrgID);

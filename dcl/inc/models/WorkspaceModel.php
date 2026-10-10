@@ -65,7 +65,7 @@ class WorkspaceModel extends DbProvider
 		{
 			$aProducts = $this->GetProducts($workspace_id);
 
-			if (count($aProducts) == 0)
+			if (dcl_count($aProducts) == 0)
 			{
 				$g_oSession->Unregister('workspace');
 				$g_oSession->Unregister('workspace_products');

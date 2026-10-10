@@ -151,7 +151,7 @@ class WorkOrderSqlQueryHelper extends AbstractSqlQueryHelper
 
 			if (isset($this->filter['dcl_wo_account.account_id']) && is_array($this->filter['dcl_wo_account.account_id']))
 			{
-				if (count($aOrgFilter) > 0)
+				if (dcl_count($aOrgFilter) > 0)
 					$aOrgFilter = array_intersect($this->filter['dcl_wo_account.account_id'], $aOrgFilter);
 				else
 					$aOrgFilter = $this->filter['dcl_wo_account.account_id'];
@@ -159,7 +159,7 @@ class WorkOrderSqlQueryHelper extends AbstractSqlQueryHelper
 
 			$sql .= ' And (dcl_wo_account.account_id is null Or dcl_wo_account.account_id = ';
 			$sql .= '(Select min(account_id) From dcl_wo_account where wo_id = workorders.jcn And seq = workorders.seq';
-			if (count($aOrgFilter) > 0)
+			if (dcl_count($aOrgFilter) > 0)
 				$sql .= ' AND account_id IN (' . join(',', $aOrgFilter) . ')';
 
 			$sql .= '))';

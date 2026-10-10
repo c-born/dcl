@@ -28,7 +28,7 @@ function smarty_function_dcl_select_personnel($params, &$smarty)
 	if (!isset($params['id']))
 		$params['id'] = $params['name'];
 
-	if (!isset($params['default']) || (is_array($params['default']) && count($params['default']) == 0))
+	if (!isset($params['default']) || (is_array($params['default']) && dcl_count($params['default']) == 0))
 		$params['default'] = '';
 
 	$params['active'] = (!isset($params['active']) || $params['active'] == true) ? 'Y' : 'N';
@@ -66,9 +66,9 @@ function smarty_function_dcl_select_personnel($params, &$smarty)
 			if ($params['default'] != '')
 			{
 				$defaultIds = Filter::ToIntArray($params['default']);
-				if ($defaultIds != null && is_array($defaultIds) && count($defaultIds) > 0)
+				if ($defaultIds != null && is_array($defaultIds) && dcl_count($defaultIds) > 0)
 				{
-					if (count($defaultIds) > 1)
+					if (dcl_count($defaultIds) > 1)
 						$sSQL .= ' OR p.id IN (' . join(',', $defaultIds) . ') ';
 					else
 						$sSQL .= ' OR p.id = ' . $defaultIds[0] . ' ';
@@ -102,9 +102,9 @@ function smarty_function_dcl_select_personnel($params, &$smarty)
 				if ($params['default'] != '')
 				{
 					$defaultIds = Filter::ToIntArray($params['default']);
-					if ($defaultIds != null && is_array($defaultIds) && count($defaultIds) > 0)
+					if ($defaultIds != null && is_array($defaultIds) && dcl_count($defaultIds) > 0)
 					{
-						if (count($defaultIds) > 1)
+						if (dcl_count($defaultIds) > 1)
 							$sSQL .= ' OR p.id IN (' . join(',', $defaultIds) . ') ';
 						else
 							$sSQL .= ' OR p.id = ' . $defaultIds[0] . ' ';
@@ -131,9 +131,9 @@ function smarty_function_dcl_select_personnel($params, &$smarty)
 				if ($params['default'] != '')
 				{
 					$defaultIds = Filter::ToIntArray($params['default']);
-					if ($defaultIds != null && is_array($defaultIds) && count($defaultIds) > 0)
+					if ($defaultIds != null && is_array($defaultIds) && dcl_count($defaultIds) > 0)
 					{
-						if (count($defaultIds) > 1)
+						if (dcl_count($defaultIds) > 1)
 							$sSQL .= ' OR p.id IN (' . join(',', $defaultIds) . ') ';
 						else
 							$sSQL .= ' OR p.id = ' . $defaultIds[0] . ' ';

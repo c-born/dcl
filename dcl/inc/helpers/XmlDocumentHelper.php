@@ -91,7 +91,7 @@ class XmlDocumentHelper
 		$oNew->name = &$sName;
 		$oNew->attributes = &$aAttributes;
 		$oNew->parentNode = &$oParent;
-		$nodeIdx = count($oParent->childNodes);
+		$nodeIdx = dcl_count($oParent->childNodes);
 		$oParent->childNodes[$nodeIdx] = &$oNew;
 	}
 
@@ -99,7 +99,7 @@ class XmlDocumentHelper
 	{
 		unset($this->currentNode);
 		$this->currentNode = NULL;
-		for ($i = 0; $i < count($oStart->childNodes) && $this->currentNode == NULL; $i++)
+		for ($i = 0; $i < dcl_count($oStart->childNodes) && $this->currentNode == NULL; $i++)
 		{
 			if ($oStart->childNodes[$i]->name == $element)
 			{
@@ -119,7 +119,7 @@ class XmlDocumentHelper
 		if ($oStart->name == $element && IsSet($oStart->attributes[$attribute]) && ($oStart->attributes[$attribute] == $value || $value == "*"))
 			$this->nodes[] = &$oStart;
 
-		for ($i = 0; $i < count($oStart->childNodes); $i++)
+		for ($i = 0; $i < dcl_count($oStart->childNodes); $i++)
 			$this->ListNodes($oStart->childNodes[$i], $element, $attribute, $value);
 	}
 
@@ -144,7 +144,7 @@ class XmlDocumentHelper
 
 		// Add new node and set it to be current node
 		$this->AddChildNode($this->currentNode, $name, $attributes);
-		$this->currentNode = &$this->currentNode->childNodes[count($this->currentNode->childNodes) - 1];
+		$this->currentNode = &$this->currentNode->childNodes[dcl_count($this->currentNode->childNodes) - 1];
 	}
 
 	public function EndElement($parser, $name)
@@ -173,13 +173,13 @@ class XmlDocumentHelper
 	{
 		// Opening tag
 		$sNode = '<' . $oNode->name;
-		if (count($oNode->attributes) > 0)
+		if (dcl_count($oNode->attributes) > 0)
 		{
 			foreach ($oNode->attributes as $k => $v)
 				$sNode .= ' ' . $k . '="' . $v . '"';
 		}
 
-		if (count($oNode->childNodes) == 0 && $oNode->data == '')
+		if (dcl_count($oNode->childNodes) == 0 && $oNode->data == '')
 		{
 			return $sNode . ' />';
 		}
@@ -189,7 +189,7 @@ class XmlDocumentHelper
 		$sNode .= $oNode->data;
 
 		// Children
-		for ($i = 0; $i < count($oNode->childNodes); $i++)
+		for ($i = 0; $i < dcl_count($oNode->childNodes); $i++)
 			$sNode .= $this->RenderNode($oNode->childNodes[$i]);
 
 		// Close Tag

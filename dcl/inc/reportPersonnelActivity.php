@@ -226,7 +226,7 @@ class reportPersonnelActivity
 				$query .= ' and actionon between ' . $objDB->DisplayToSQL($begindate) . ' and ' . $objDB->DisplayToSQL($enddate);
 			}
 			
-			if (count($aStatuses) > 0)
+			if (dcl_count($aStatuses) > 0)
 			{
 				$query .= ' and status in (' . join(',', $aStatuses) . ')';
 			}
@@ -272,7 +272,7 @@ class reportPersonnelActivity
 				$iGroupColumn = 14;
 			}
 
-			if (count($aStatuses) > 0)
+			if (dcl_count($aStatuses) > 0)
 			{
 				$query .= ' and status in (' . join(',', $aStatuses) . ')';
 			}
@@ -298,7 +298,7 @@ class reportPersonnelActivity
 				$iGroupColumn = 15;
 			}
 
-			if (count($aStatuses) > 0)
+			if (dcl_count($aStatuses) > 0)
 			{
 				$query .= ' and status in (' . join(',', $aStatuses) . ')';
 			}
@@ -326,7 +326,7 @@ class reportPersonnelActivity
 				$iGroupColumn = 15;
 			}
 
-			if (count($aStatuses) > 0)
+			if (dcl_count($aStatuses) > 0)
 			{
 				$query .= ' and status in (' . join(',', $aStatuses) . ')';
 			}

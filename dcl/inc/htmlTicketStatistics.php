@@ -70,7 +70,7 @@ class htmlTicketStatistics
 			$objPersonnel = new PersonnelModel();
 		}
 
-		if (count($products) < 1)
+		if (dcl_count($products) < 1)
 		{
 			$query  = 'SELECT id FROM products ORDER BY name';
 			$objProduct->Query($query);
@@ -107,12 +107,12 @@ class htmlTicketStatistics
 		}
 		else
 		{
-			if (count($people) < 1)
+			if (dcl_count($people) < 1)
 				$idWhere = 'id > 1';
 			else
 			{
 				$idWhere = 'id in (';
-				for ($i = 0; $i < count($people); $i++)
+				for ($i = 0; $i < dcl_count($people); $i++)
 				{
 					if ($i > 0)
 						$idWhere .= ',';
@@ -165,9 +165,9 @@ class htmlTicketStatistics
 		$objNow->SetFromDisplay($begindate . ' 00:00:00');
 
 		$myArrayUnits = array();
-		for ($i = 0; $i <= count($person) + 1; $i++)
+		for ($i = 0; $i <= dcl_count($person) + 1; $i++)
 		{
-			for ($j = 0; $j <= (count($products) * count($statii) + count($statii)); $j++)
+			for ($j = 0; $j <= (dcl_count($products) * dcl_count($statii) + dcl_count($statii)); $j++)
 				$myArrayUnits[$j][$i] = 0;
 		}
 
@@ -180,7 +180,7 @@ class htmlTicketStatistics
 			$thisOpened = '';
 			$thisClosed = '';
 
-			for ($j = 0; $j < count($products); $j++)
+			for ($j = 0; $j < dcl_count($products); $j++)
 			{
 				if ($products[$j][0] == $objTickets->f(0))
 				{
@@ -189,7 +189,7 @@ class htmlTicketStatistics
 				}
 			}
 
-			for ($j = 0; $j < count($person); $j++)
+			for ($j = 0; $j < dcl_count($person); $j++)
 			{
 				if ($person[$j][0] == $objTickets->f(2))
 				{
@@ -207,43 +207,43 @@ class htmlTicketStatistics
 					// Opened before begin date?
 					if ($objTimestamp->time < $objNow->time)
 					{
-						$myArrayUnits[$thisProduct * count($statii)][$thisPerson]++;
-						$myArrayUnits[count($products) * count($statii)][$thisPerson]++;
-						$myArrayUnits[$thisProduct * count($statii)][count($person)]++;
-						$myArrayUnits[count($products) * count($statii)][count($person)]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii)][$thisPerson]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii)][$thisPerson]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii)][dcl_count($person)]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii)][dcl_count($person)]++;
 					}
 					else
 					{
-						$myArrayUnits[$thisProduct * count($statii) + 1][$thisPerson]++;
-						$myArrayUnits[count($products) * count($statii) + 1][$thisPerson]++;
-						$myArrayUnits[$thisProduct * count($statii) + 1][count($person)]++;
-						$myArrayUnits[count($products) * count($statii) + 1][count($person)]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii) + 1][$thisPerson]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii) + 1][$thisPerson]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii) + 1][dcl_count($person)]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii) + 1][dcl_count($person)]++;
 					}
 
 					// Closed or forward?
 					if ($objStatuses->GetStatusType($objTickets->f(1)) == 2)
 					{
-						$myArrayUnits[$thisProduct * count($statii) + 2][$thisPerson]++;
-						$myArrayUnits[count($products) * count($statii) + 2][$thisPerson]++;
-						$myArrayUnits[$thisProduct * count($statii) + 2][count($person)]++;
-						$myArrayUnits[count($products) * count($statii) + 2][count($person)]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii) + 2][$thisPerson]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii) + 2][$thisPerson]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii) + 2][dcl_count($person)]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii) + 2][dcl_count($person)]++;
 					}
 					else
 					{
-						$myArrayUnits[$thisProduct * count($statii) + 3][$thisPerson]++;
-						$myArrayUnits[count($products) * count($statii) + 3][$thisPerson]++;
-						$myArrayUnits[$thisProduct * count($statii) + 3][count($person)]++;
-						$myArrayUnits[count($products) * count($statii) + 3][count($person)]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii) + 3][$thisPerson]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii) + 3][$thisPerson]++;
+						$myArrayUnits[$thisProduct * dcl_count($statii) + 3][dcl_count($person)]++;
+						$myArrayUnits[dcl_count($products) * dcl_count($statii) + 3][dcl_count($person)]++;
 					}
 
-					$myArrayUnits[count($products) * count($statii) + count($statii)][$thisPerson]++;
-					$myArrayUnits[$thisProduct * count($statii)][count($person) + 1]++;
-					$myArrayUnits[count($products) * count($statii) + count($statii)][count($person)]++;
+					$myArrayUnits[dcl_count($products) * dcl_count($statii) + dcl_count($statii)][$thisPerson]++;
+					$myArrayUnits[$thisProduct * dcl_count($statii)][dcl_count($person) + 1]++;
+					$myArrayUnits[dcl_count($products) * dcl_count($statii) + dcl_count($statii)][dcl_count($person)]++;
 				}
 			}
 			else
 			{
-				for ($j = 0; $j < count($statii); $j++)
+				for ($j = 0; $j < dcl_count($statii); $j++)
 				{
 					if ($statii[$j][0] == $objTickets->f(1))
 					{
@@ -254,13 +254,13 @@ class htmlTicketStatistics
 
 				if ($thisProduct > -1 && $thisStatus > -1 && $thisPerson > -1)
 				{
-					$myArrayUnits[$thisProduct * count($statii) + $thisStatus][$thisPerson]++;
-					$myArrayUnits[count($products) * count($statii) + $thisStatus][$thisPerson]++;
-					$myArrayUnits[count($products) * count($statii) + count($statii)][$thisPerson]++;
-					$myArrayUnits[$thisProduct * count($statii) + $thisStatus][count($person)]++;
-					$myArrayUnits[$thisProduct * count($statii)][count($person) + 1]++;
-					$myArrayUnits[count($products) * count($statii) + $thisStatus][count($person)]++;
-					$myArrayUnits[count($products) * count($statii) + count($statii)][count($person)]++;
+					$myArrayUnits[$thisProduct * dcl_count($statii) + $thisStatus][$thisPerson]++;
+					$myArrayUnits[dcl_count($products) * dcl_count($statii) + $thisStatus][$thisPerson]++;
+					$myArrayUnits[dcl_count($products) * dcl_count($statii) + dcl_count($statii)][$thisPerson]++;
+					$myArrayUnits[$thisProduct * dcl_count($statii) + $thisStatus][dcl_count($person)]++;
+					$myArrayUnits[$thisProduct * dcl_count($statii)][dcl_count($person) + 1]++;
+					$myArrayUnits[dcl_count($products) * dcl_count($statii) + $thisStatus][dcl_count($person)]++;
+					$myArrayUnits[dcl_count($products) * dcl_count($statii) + dcl_count($statii)][dcl_count($person)]++;
 				}
 			}
 		}
@@ -273,12 +273,12 @@ class htmlTicketStatistics
 		print(STR_CMMN_LOGIN);
 		print('</TH>');
 		$ii = 0;
-		for ($i = 0; $i < count($products); $i++)
+		for ($i = 0; $i < dcl_count($products); $i++)
 		{
-			if ($myArrayUnits[$i * count($statii)][count($person) + 1] == 0)
+			if ($myArrayUnits[$i * dcl_count($statii)][dcl_count($person) + 1] == 0)
 				continue;
 
-			print('<TH COLSPAN=' . count($statii));
+			print('<TH COLSPAN=' . dcl_count($statii));
 			print('>');
 			$objProduct->Load($products[$i][0]);
 			print($objProduct->name);
@@ -286,12 +286,12 @@ class htmlTicketStatistics
 
 			$ii++;
 		}
-		print('<TH COLSPAN=' . (count($statii) + 1));
+		print('<TH COLSPAN=' . (dcl_count($statii) + 1));
 		print('>');
 		print(STR_CMMN_TOTALS);
 		print('</TH></TR><TR>');
 		$statusCol = '';
-		for ($j = 0; $j < count($statii); $j++)
+		for ($j = 0; $j < dcl_count($statii); $j++)
 		{
 			$statusCol .= '<TH>';
 			if ($doingActivity)
@@ -305,9 +305,9 @@ class htmlTicketStatistics
 			}
 			$statusCol .= '</TH>';
 		}
-		for ($i = 0; $i < count($products); $i++)
+		for ($i = 0; $i < dcl_count($products); $i++)
 		{
-			if ($myArrayUnits[$i * count($statii)][count($person) + 1] == 0)
+			if ($myArrayUnits[$i * dcl_count($statii)][dcl_count($person) + 1] == 0)
 				continue;
 
 			print($statusCol);
@@ -317,46 +317,46 @@ class htmlTicketStatistics
 		print($statusCol);
 		printf('<TH>%s</TH>', STR_WOST_ALL);
 		print('</TR>');
-		for ($i = 0; $i < count($person) + 2; $i++)
+		for ($i = 0; $i < dcl_count($person) + 2; $i++)
 		{
-			if ($i < count($person) && $myArrayUnits[count($products) * count($statii) + count($statii)][$i] == 0)
+			if ($i < dcl_count($person) && $myArrayUnits[dcl_count($products) * dcl_count($statii) + dcl_count($statii)][$i] == 0)
 				continue;
 
-			if ($i < count($person))
+			if ($i < dcl_count($person))
 			{
 				$objPersonnel->Load($person[$i][0]);
 				print('<TR><TD>' . $objPersonnel->short . '</TD>');
 			}
-			elseif ($i == count($person))
+			elseif ($i == dcl_count($person))
 				print('<TR><TD>' . STR_TCK_STATUS . '</TD>');
 			else
 				print('<TR><TD>' . STR_TCK_PRODUCT . '</TD>');
 
-			for ($j = 0; $j < count($products) + 1; $j++)
+			for ($j = 0; $j < dcl_count($products) + 1; $j++)
 			{
-				if ($j < count($products) && $myArrayUnits[$j * count($statii)][count($person) + 1] == 0)
+				if ($j < dcl_count($products) && $myArrayUnits[$j * dcl_count($statii)][dcl_count($person) + 1] == 0)
 					continue;
 
-				for ($k = 0; $k < count($statii) + 1; $k++)
+				for ($k = 0; $k < dcl_count($statii) + 1; $k++)
 				{
-					if (($i < (count($person) + 1) &&
-								(($j < count($products) && $k < count($statii)) ||
-									$j == count($products))) ||
-							($i == (count($person) + 1) && $k == 0 && $j < count($products)))
+					if (($i < (dcl_count($person) + 1) &&
+								(($j < dcl_count($products) && $k < dcl_count($statii)) ||
+									$j == dcl_count($products))) ||
+							($i == (dcl_count($person) + 1) && $k == 0 && $j < dcl_count($products)))
 					{
-						$units = $myArrayUnits[$j * count($statii) + $k][$i];
+						$units = $myArrayUnits[$j * dcl_count($statii) + $k][$i];
 						print('<TD');
-						if ($i == count($person) + 1)
-							print(' ALIGN=CENTER COLSPAN=' . count($statii));
+						if ($i == dcl_count($person) + 1)
+							print(' ALIGN=CENTER COLSPAN=' . dcl_count($statii));
 						print('>');
 						if ($units > 0)
 						{
 							$sMenuAction = 'menuAction=htmlTicketStatistics.SearchFromStat';
-							if ($k < count($statii) && $i < count($person) + 1)
+							if ($k < dcl_count($statii) && $i < dcl_count($person) + 1)
 								$sMenuAction .= '&status=' . $statii[$k][0];
-							if ($j < count($products))
+							if ($j < dcl_count($products))
 								$sMenuAction .= '&product=' . $products[$j][0];
-							if ($i < count($person))
+							if ($i < dcl_count($person))
 								$sMenuAction .= '&responsible=' . $person[$i][0];
 							if ($begindate != '')
 								$sMenuAction .= '&begindate=' . $begindate;

@@ -107,7 +107,7 @@ class TicketsModel extends DbProvider
 	public function GetHoursText()
 	{
 		// Set hoursText
-		if ($this->res > 0 && count($this->Record) > 0)
+		if ($this->res > 0 && dcl_count($this->Record) > 0)
 		{
 			$tempHours = $this->f('seconds');
 		}
@@ -207,7 +207,7 @@ class TicketsModel extends DbProvider
 						array_push($this->aContactOrgs[$iPersonnelID], $oDB->f(0));
 					}
 					
-					if (count($this->aContactOrgs[$iPersonnelID]) > 0)
+					if (dcl_count($this->aContactOrgs[$iPersonnelID]) > 0)
 						$bCanReceive = in_array($obj->account, $this->aContactOrgs[$iPersonnelID]);
 					else
 						$bCanReceive = false;

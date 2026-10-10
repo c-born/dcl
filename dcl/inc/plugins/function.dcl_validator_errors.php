@@ -22,7 +22,7 @@
 
 function smarty_function_dcl_validator_errors($params, &$smarty)
 {
-	if (!isset($params['errors']) || count($params['errors']) == 0)
+	if (!isset($params['errors']) || dcl_count($params['errors']) == 0)
 		return '';
 ?>
 	<div class="alert alert-danger fade in" role="alert">

@@ -104,7 +104,7 @@ class htmlChangeLog
 
 		$aDisplayRecords = array();
 		$aRecords = $this->oDB->FetchAllRows();
-		for ($i = 0; $i < count($aRecords); $i++)
+		for ($i = 0; $i < dcl_count($aRecords); $i++)
 		{
 			$aDisplayRecords[$i] = array($this->GetLink('menuAction=htmlChangeLog.ShowProjectCommits&dcl_sccs_id=' . $aRecords[$i][0] . '&personnel_id=' . $id, $aRecords[$i][1]), $aRecords[$i][2]);
 		}
@@ -151,7 +151,7 @@ class htmlChangeLog
 
 		$aDisplayRecords = array();
 		$aRecords = $this->oDB->FetchAllRows();
-		for ($i = 0; $i < count($aRecords); $i++)
+		for ($i = 0; $i < dcl_count($aRecords); $i++)
 		{
 			$aDisplayRecords[$i] = array($this->GetLink('menuAction=htmlChangeLog.ShowFileCommits&dcl_sccs_id=' . $sccs_id . '&personnel_id=' . $id . '&sccs_project_path=' . rawurlencode($aRecords[$i][0]), $aRecords[$i][0]), $aRecords[$i][1]);
 		}
@@ -200,7 +200,7 @@ class htmlChangeLog
 
 		$aDisplayRecords = array();
 		$aRecords = $this->oDB->FetchAllRows();
-		for ($i = 0; $i < count($aRecords); $i++)
+		for ($i = 0; $i < dcl_count($aRecords); $i++)
 		{
 			$aDisplayRecords[$i] = array($this->GetLink('menuAction=htmlChangeLog.ShowVersionCommits&dcl_sccs_id=' . $sccs_id . '&personnel_id=' . $id . '&sccs_project_path=' . rawurlencode($sccs_project_path) . '&sccs_file_name=' . rawurlencode($aRecords[$i][0]), $aRecords[$i][0]), $aRecords[$i][1]);
 		}
@@ -251,7 +251,7 @@ class htmlChangeLog
 
 		$aRecords = $this->oDB->FetchAllRows();
 		$aDisplayRecords = array();
-		for ($i = 0; $i < count($aRecords); $i++)
+		for ($i = 0; $i < dcl_count($aRecords); $i++)
 		{
 			$aDisplayRecords[$i][0] = $aRecords[$i][0];
 			$aDisplayRecords[$i][1] = $this->oDB->FormatTimestampForDisplay($aRecords[$i][1]);

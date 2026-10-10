@@ -165,7 +165,7 @@ class htmlContact
 
 		$oMeta = new DisplayHelper();
 		$oSmarty = new SmartyHelper();
-		if (count($contact_id) > 1)
+		if (dcl_count($contact_id) > 1)
 		{
 			$aContacts = $contact_id;
 			$iIndex = 0;
@@ -225,7 +225,7 @@ class htmlContact
 				unset($aMergeContacts[$key]);
 		}
 			
-		if (count($aMergeContacts) > 0)
+		if (dcl_count($aMergeContacts) > 0)
 		{
 			$sMergeContacts = implode(',', $aMergeContacts);
 

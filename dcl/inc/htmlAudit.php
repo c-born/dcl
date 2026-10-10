@@ -106,7 +106,7 @@ class htmlAudit
 		{
 			$this->aAudit[$iVersion]['audit_by'] = $this->oMeta->GetPersonnel($this->aAudit[$iVersion]['audit_by']);
 
-			for ($i = 0; $i < count($this->aAudit[$iVersion]['changes']); $i++)
+			for ($i = 0; $i < dcl_count($this->aAudit[$iVersion]['changes']); $i++)
 			{
 				$sField = $this->aAudit[$iVersion]['changes'][$i]['field'];
 				if ($sField == 'contact_id')

@@ -94,7 +94,7 @@ class htmlViews
 
 		$objDBP = new PersonnelModel();
 
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$allRecs[$i][3] = sprintf('<a href="%s">%s</a>',
 					menuLink('', sprintf('menuAction=boViews.exec&viewid=%d', $allRecs[$i][0])),

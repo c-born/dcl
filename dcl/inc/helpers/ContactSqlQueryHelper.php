@@ -90,7 +90,7 @@ class ContactSqlQueryHelper extends AbstractSqlQueryHelper
 
 			if (isset($this->filter['dcl_org.org_id']) && is_array($this->filter['dcl_org.org_id']))
 			{
-				if (count($aOrgFilter) > 0)
+				if (dcl_count($aOrgFilter) > 0)
 					$aOrgFilter = array_intersect($this->filter['dcl_org.org_id'], $aOrgFilter);
 				else
 					$aOrgFilter = $this->filter['dcl_org.org_id'];
@@ -98,7 +98,7 @@ class ContactSqlQueryHelper extends AbstractSqlQueryHelper
 
 			$sql .= ' And (dcl_org_contact.org_id is null OR dcl_org_contact.org_id = ';
 			$sql .= '(Select min(org_id) From dcl_org_contact where contact_id = dcl_contact.contact_id';
-			if (count($aOrgFilter) > 0)
+			if (dcl_count($aOrgFilter) > 0)
 				$sql .= ' AND org_id IN (' . join(',', $aOrgFilter) . ')';
 
 			$sql .= '))';

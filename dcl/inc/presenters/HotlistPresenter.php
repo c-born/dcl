@@ -35,7 +35,7 @@ class HotlistPresenter
 		$oTable->addColumn(STR_CMMN_TAGS, 'html');
 		$oTable->addColumn('Count', 'numeric');
 		
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$allRecs[$i][0] = '<a class="dcl-hotlist" href="' . menuLink('', 'menuAction=Hotlist.Browse&tag=' . urlencode($allRecs[$i][0])) . '">' . htmlspecialchars($allRecs[$i][0], ENT_QUOTES, 'UTF-8') . '</a>';
 		}
@@ -66,7 +66,7 @@ class HotlistPresenter
 		$oTable->addColumn('Hotlists', 'string');
 
 		$oHotlistDB = new EntityHotlistModel();
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$sHotlists = $oHotlistDB->getTagsWithPriorityForEntity($allRecs[$i][0], $allRecs[$i][1], $allRecs[$i][2]);
 			$allRecs[$i][8] = $model->FormatTimeStampForDisplay($allRecs[$i][8]);

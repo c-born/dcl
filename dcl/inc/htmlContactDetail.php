@@ -147,7 +147,7 @@ class htmlContactDetail
 			while ($oOrgs->next_record())
 			{
 				$aData = array();
-				for ($i = 0; $i < count($oViewOrg->columns); $i++)
+				for ($i = 0; $i < dcl_count($oViewOrg->columns); $i++)
 					array_push($aData, $oOrgs->f($i));
 					
 				$aData['org_id'] = $oOrgs->f('org_id');
@@ -185,7 +185,7 @@ class htmlContactDetail
 		while ($oTickets->next_record())
 		{
 			$aData = array();
-			for ($i = 0; $i < count($oViewTicket->columns); $i++)
+			for ($i = 0; $i < dcl_count($oViewTicket->columns); $i++)
 				array_push($aData, $oTickets->f($i));
 				
 			$aData['ticketid'] = $oTickets->f('ticketid');
@@ -224,7 +224,7 @@ class htmlContactDetail
 		while ($oWO->next_record())
 		{
 			$aData = array();
-			for ($i = 0; $i < count($oViewWO->columns); $i++)
+			for ($i = 0; $i < dcl_count($oViewWO->columns); $i++)
 				array_push($aData, $oWO->f($i));
 				
 			$aData['jcn'] = $oWO->f('jcn');

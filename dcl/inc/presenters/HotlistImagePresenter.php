@@ -69,7 +69,7 @@ class HotlistImagePresenter
 			$index++;
 		}
 
-		if (count($counts) == 0)
+		if (dcl_count($counts) == 0)
 		{
 			$counts[] = 1;
 			$items[] = '0: No Matches';

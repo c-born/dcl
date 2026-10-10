@@ -370,10 +370,10 @@ class boWatches
 			}
 		}
 		
-		if (count($arrEmail) == 0 && count($arrPublicEmail) == 0)
+		if (dcl_count($arrEmail) == 0 && dcl_count($arrPublicEmail) == 0)
 			return;
 			
-		if (count($arrEmail) > 0 && count($arrPublicEmail) > 0)
+		if (dcl_count($arrEmail) > 0 && dcl_count($arrPublicEmail) > 0)
 		{
 			foreach ($arrPublicEmail as $sEmail => $junk)
 			{
@@ -403,12 +403,12 @@ class boWatches
 			$toAddr .= $email;
 		}
 		
-		if (count($oMail->to) > 0)
+		if (dcl_count($oMail->to) > 0)
 		{
 			$bSuccess = $oMail->Send();
 		}
 		
-		if ($obj->is_public == 'Y' && count($arrPublicEmail) > 0)
+		if ($obj->is_public == 'Y' && dcl_count($arrPublicEmail) > 0)
 		{
 			$oMail->body = $this->GetWorkOrderNotificationBody($obj, true);
 	
@@ -421,7 +421,7 @@ class boWatches
 				$toAddr .= $email;
 			}
 			
-			if (count($oMail->to) < 1)
+			if (dcl_count($oMail->to) < 1)
 				return;
 	
 			$bSuccess = $oMail->Send();
@@ -537,10 +537,10 @@ class boWatches
 			}
 		}
 
-		if (count($arrEmail) == 0 && count($arrPublicEmail) == 0)
+		if (dcl_count($arrEmail) == 0 && dcl_count($arrPublicEmail) == 0)
 			return;
 			
-		if (count($arrEmail) > 0 && count($arrPublicEmail) > 0)
+		if (dcl_count($arrEmail) > 0 && dcl_count($arrPublicEmail) > 0)
 		{
 			foreach ($arrPublicEmail as $sEmail => $junk)
 			{
@@ -566,7 +566,7 @@ class boWatches
 			$toAddr .= $email;
 		}
 
-		if (count($oMail->to) > 0)
+		if (dcl_count($oMail->to) > 0)
 		{
 			$bSuccess = $oMail->Send();
 	
@@ -579,7 +579,7 @@ class boWatches
 			}
 		}
 		
-		if ($obj->is_public == 'Y' && count($arrPublicEmail) > 0)
+		if ($obj->is_public == 'Y' && dcl_count($arrPublicEmail) > 0)
 		{
 			$oMail->body = $this->GetTicketNotificationBody($obj, true);
 	
@@ -592,7 +592,7 @@ class boWatches
 				$toAddr .= $email;
 			}
 			
-			if (count($oMail->to) < 1)
+			if (dcl_count($oMail->to) < 1)
 				return;
 	
 			$bSuccess = $oMail->Send();

@@ -127,7 +127,7 @@ class htmlTicketForm
 			if (($iOrgID = @Filter::ToInt($_REQUEST['org_id'])) !== null && $iOrgID > 0)
 			{
 				$aOrg =& $oMeta->GetOrganization($iOrgID);
-				if (is_array($aOrg) && count($aOrg) > 0)
+				if (is_array($aOrg) && dcl_count($aOrg) > 0)
 				{
 					$oSmarty->assign('VAL_ORGID', $iOrgID);
 					$oSmarty->assign('VAL_ORGNAME', $aOrg['name']);
@@ -137,7 +137,7 @@ class htmlTicketForm
 			if (($iContactID = @Filter::ToInt($_REQUEST['contact_id'])) !== null && $iContactID > 0)
 			{
 				$aContact =& $oMeta->GetContact($iContactID);
-				if (is_array($aContact) && count($aContact) > 1)
+				if (is_array($aContact) && dcl_count($aContact) > 1)
 				{
 					$oSmarty->assign('VAL_CONTACTID', $iContactID);
 					$oSmarty->assign('VAL_CONTACTNAME', $aContact['name']);

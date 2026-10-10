@@ -37,7 +37,7 @@ class OrganizationTypeXrefModel extends DbProvider
 		$organizationId = @Filter::RequireInt($organizationId);
 		$orgTypes = @Filter::RequireIntArray($orgTypes);
 		
-		$hasOrgTypes = $orgTypes !== null && count($orgTypes) > 0;
+		$hasOrgTypes = $orgTypes !== null && dcl_count($orgTypes) > 0;
 		$sql = 'DELETE FROM dcl_org_type_xref WHERE org_id = ' . $organizationId;
 		if ($hasOrgTypes)
 		{

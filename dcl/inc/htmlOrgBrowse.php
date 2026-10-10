@@ -58,7 +58,7 @@ class htmlOrgBrowse
 		$oTable = new TableHtmlHelper();
 		$oTable->setData($this->oDB->FetchAllRows());
 		
-		for ($iColumn = 0; $iColumn < count($this->oView->groups); $iColumn++)
+		for ($iColumn = 0; $iColumn < dcl_count($this->oView->groups); $iColumn++)
 		{
 			$oTable->addGroup($iColumn);
 			$oTable->addColumn('', 'string');

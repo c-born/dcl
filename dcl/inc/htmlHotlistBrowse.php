@@ -56,7 +56,7 @@ class htmlHotlistBrowse
 		$oTable = new TableHtmlHelper();
 		$allRecs = $this->oDB->FetchAllRows();
 		
-		for ($iColumn = 0; $iColumn < count($this->oView->groups); $iColumn++)
+		for ($iColumn = 0; $iColumn < dcl_count($this->oView->groups); $iColumn++)
 		{
 			$oTable->addGroup($iColumn);
 			$oTable->addColumn('');
@@ -70,7 +70,7 @@ class htmlHotlistBrowse
 				$oTable->addColumn($sColumn, 'string');
 		}
 		
-		for ($i = 0; $i < count($allRecs); $i++)
+		for ($i = 0; $i < dcl_count($allRecs); $i++)
 		{
 			$allRecs[$i][2] = '<a class="dcl-hotlist" href="' . menuLink('', 'menuAction=Hotlist.Browse&tag=' . $allRecs[$i][2]) . '">' . $allRecs[$i][2] . '</a>';
 		}
@@ -85,10 +85,10 @@ class htmlHotlistBrowse
 			}
 		}
 
-		if (count($allRecs) > 0 && $g_oSec->HasAnyPerm(array(DCL_ENTITY_HOTLIST => array($g_oSec->PermArray(DCL_PERM_VIEW), $g_oSec->PermArray(DCL_PERM_MODIFY), $g_oSec->PermArray(DCL_PERM_DELETE)))))
+		if (dcl_count($allRecs) > 0 && $g_oSec->HasAnyPerm(array(DCL_ENTITY_HOTLIST => array($g_oSec->PermArray(DCL_PERM_VIEW), $g_oSec->PermArray(DCL_PERM_MODIFY), $g_oSec->PermArray(DCL_PERM_DELETE)))))
 		{
 			$oTable->addColumn(STR_CMMN_OPTIONS, 'html');
-			for ($i = 0; $i < count($allRecs); $i++)
+			for ($i = 0; $i < dcl_count($allRecs); $i++)
 			{
 				$options = '';
 				if ($g_oSec->HasPerm(DCL_ENTITY_HOTLIST, DCL_PERM_VIEW))

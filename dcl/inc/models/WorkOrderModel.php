@@ -255,7 +255,7 @@ class WorkOrderModel extends DbProvider
 						if ($bCanView)
 						{
 							$aProducts = explode(',', $g_oSession->Value('org_products'));
-							$bCanView = (count($aProducts) > 0 && in_array($obj->product, $aProducts));
+							$bCanView = (dcl_count($aProducts) > 0 && in_array($obj->product, $aProducts));
 						}
 					}
 					else
@@ -279,7 +279,7 @@ class WorkOrderModel extends DbProvider
 							array_push($this->aOrgs, $oWOA->f(2));
 						}
 						
-						$bCanView = (count($this->aOrgs) > 0);
+						$bCanView = (dcl_count($this->aOrgs) > 0);
 					}
 					else
 						$bCanView = false;
@@ -298,8 +298,8 @@ class WorkOrderModel extends DbProvider
 						array_push($this->aContactOrgs[$iPersonnelID], $oDB->f(0));
 					}
 					
-					if (count($this->aContactOrgs[$iPersonnelID]) > 0)
-						$bCanView = (count(array_intersect($this->aOrgs, $this->aContactOrgs[$iPersonnelID])) > 0);
+					if (dcl_count($this->aContactOrgs[$iPersonnelID]) > 0)
+						$bCanView = (dcl_count(array_intersect($this->aOrgs, $this->aContactOrgs[$iPersonnelID])) > 0);
 					else
 						$bCanView = false;
 				}

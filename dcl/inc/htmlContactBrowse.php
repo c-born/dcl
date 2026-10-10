@@ -68,7 +68,7 @@ class htmlContactBrowse
 
 		$oTable->setData($aContacts);
 		
-		for ($iColumn = 0; $iColumn < count($this->oView->groups); $iColumn++)
+		for ($iColumn = 0; $iColumn < dcl_count($this->oView->groups); $iColumn++)
 		{
 			$oTable->addGroup($iColumn);
 			$oTable->addColumn('', 'string');
@@ -221,7 +221,7 @@ class htmlContactBrowse
 			{
 				$oView->logiclike = 'AND';
 				$aCriteria = explode(',', $filterSearch);
-				if (count($aCriteria) > 2)
+				if (dcl_count($aCriteria) > 2)
 				{
 					$oView->AddDef('filterlike', 'last_name', trim($aCriteria[0]));
 					array_shift($aCriteria);
@@ -300,15 +300,15 @@ class htmlContactBrowse
 		if ($filterOrgID === null)
 			$filterOrgID = array();
 
-		if (count($defaultOrgIds) > 0)
+		if (dcl_count($defaultOrgIds) > 0)
 		{
-			if (count($filterOrgID) > 0)
+			if (dcl_count($filterOrgID) > 0)
 				$filterOrgID = array_intersect($defaultOrgIds, $filterOrgID);
 			else
 				$filterOrgID = $defaultOrgIds;
 		}
 
-		if (count($filterOrgID) > 0)
+		if (dcl_count($filterOrgID) > 0)
 			$oView->AddDef('filter', 'dcl_org_contact.org_id', $filterOrgID);
 
 		$this->sColumnTitle = STR_CMMN_OPTIONS;

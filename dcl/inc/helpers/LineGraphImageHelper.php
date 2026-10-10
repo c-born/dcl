@@ -77,7 +77,7 @@ class LineGraphImageHelper
 		foreach ($dataURL as $line)
 		{
 			$lineData = Filter::ToIntArray($line);
-			if (count($lineData) != count($this->line_captions_x))
+			if (dcl_count($lineData) != dcl_count($this->line_captions_x))
 				throw new InvalidDataException();
 
 			$this->data[] = $lineData;
@@ -92,7 +92,7 @@ class LineGraphImageHelper
 		$this->margin_bottom = $_REQUEST['margin_bottom'];
 		$this->margin_right = $_REQUEST['margin_right'];
 
-		if (count($this->data) != count($this->colors))
+		if (dcl_count($this->data) != dcl_count($this->colors))
 			throw new InvalidDataException();
 	}
 	

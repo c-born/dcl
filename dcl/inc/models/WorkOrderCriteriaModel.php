@@ -96,7 +96,7 @@ class WorkOrderCriteriaModel
 
 	private static function ArrayHasContent($subject)
     {
-	    return is_array($subject) && count($subject) > 0;
+	    return is_array($subject) && dcl_count($subject) > 0;
     }
 	
 	/**
@@ -150,7 +150,7 @@ class WorkOrderCriteriaModel
 				if ($field == 'closedby' && !$this->SearchClosedBy)
 					continue;
 					
-				if (count($this->Personnel) > 0)
+				if (dcl_count($this->Personnel) > 0)
 				{
 					if (!$bStrippedDepartments)
 					{
@@ -162,7 +162,7 @@ class WorkOrderCriteriaModel
 						{
 							list($dpt_id, $pers_id) = explode(',', $encoded_pers);
 							$pers_sel[] = $pers_id;
-							if (count($this->Department) > 0 && in_array($dpt_id, $this->Department))
+							if (dcl_count($this->Department) > 0 && in_array($dpt_id, $this->Department))
 							{
 								foreach ($this->Department as $key => $department_id)
 								{
@@ -177,7 +177,7 @@ class WorkOrderCriteriaModel
 					}
 
 					$pers_sel = Filter::ToIntArray($pers_sel);
-					if (count($pers_sel) > 0)
+					if (dcl_count($pers_sel) > 0)
 						$view->AddDef('filter', $field, $pers_sel);
 				}
 
@@ -221,7 +221,7 @@ class WorkOrderCriteriaModel
 			foreach ($this->ModuleId as $encoded_mod)
 			{
 				list($mod_prod_id, $mod_id) = explode(',', $encoded_mod);
-				$module[count($module)] = $mod_id;
+				$module[dcl_count($module)] = $mod_id;
 				if (WorkOrderCriteriaModel::ArrayHasContent($this->Product) && in_array($mod_prod_id, $this->Product))
 				{
 					foreach ($this->Product as $key => $product_id)
@@ -260,7 +260,7 @@ class WorkOrderCriteriaModel
 				list($type_id, $status_id) = explode(',', $encoded_status);
 				if (($type_id = Filter::ToInt($type_id)) !== null && ($status_id = Filter::ToInt($status_id)) !== null)
 				{
-					$statuses[count($statuses)] = $status_id;
+					$statuses[dcl_count($statuses)] = $status_id;
 					if (WorkOrderCriteriaModel::ArrayHasContent($this->DclStatusType) && in_array($type_id, $this->DclStatusType))
 					{
 						foreach ($this->DclStatusType as $key => $status_type_id)

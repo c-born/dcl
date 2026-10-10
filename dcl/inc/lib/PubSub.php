@@ -44,7 +44,7 @@ class PubSub
 	
 	public static function Publish($eventName)
 	{
-		if (!isset(self::$Subscriptions[$eventName]) || !is_array(self::$Subscriptions[$eventName]) || count(self::$Subscriptions) == 0)
+		if (!isset(self::$Subscriptions[$eventName]) || !is_array(self::$Subscriptions[$eventName]) || dcl_count(self::$Subscriptions) == 0)
 			return;
 		
 		$eventParams = func_get_args();

@@ -300,7 +300,7 @@ class DbProvider extends AbstractDbProvider
 	{
 		if ($this->res)
 		{
-			if (count($this->Record) > 0)
+			if (dcl_count($this->Record) > 0)
 				return $this->Record[$thisField] == NULL;
 
 			return pg_FieldIsNULL($this->res, $this->cur, $thisField);

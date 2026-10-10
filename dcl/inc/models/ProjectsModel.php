@@ -247,7 +247,7 @@ class ProjectsModel extends DbProvider
 			$projects[] = array('project_id' => $project_id, 'name' => $projectModel->name);
 		}
 
-		if (count($projects) > 0)
+		if (dcl_count($projects) > 0)
 			$projects = array_reverse($projects);
 
 		return $projects;
@@ -268,7 +268,7 @@ class ProjectsModel extends DbProvider
 				$projects[] = array('project_id' => $projectId, 'name' => $projectModel->name);
 			}
 
-			if (count($projects) > 0)
+			if (dcl_count($projects) > 0)
 				$projects = array_reverse($projects);
 		}
 

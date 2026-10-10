@@ -359,7 +359,7 @@
 			$sUCSQL = '';
 			$sPKSQL = '';
 
-			if(count($aTableDef['pk']) > 0)
+			if(dcl_count($aTableDef['pk']) > 0)
 			{
 				if(!$this->_GetPK($aTableDef['pk'], $sPKSQL))
 				{
@@ -372,7 +372,7 @@
 				}
 			}
 
-			if(count($aTableDef['uc']) > 0)
+			if(dcl_count($aTableDef['uc']) > 0)
 			{
 				if (!isset($aTableDef['uc'][0]))
 				{
@@ -487,7 +487,7 @@
 		public function _GetPK($aFields, &$sPKSQL)
 		{
 			$sPKSQL = '';
-			if(count($aFields) < 1)
+			if(dcl_count($aFields) < 1)
 			{
 				return true;
 			}
@@ -510,7 +510,7 @@
 		public function _GetUC($aFields, &$sUCSQL)
 		{
 			$sUCSQL = '';
-			if(count($aFields) < 1)
+			if(dcl_count($aFields) < 1)
 			{
 				return True;
 			}

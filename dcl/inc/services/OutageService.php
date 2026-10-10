@@ -163,7 +163,7 @@ class OutageService
 
 		$retVal = new stdClass();
 		$retVal->outages = array();
-		if (count($allRecs) > 0)
+		if (dcl_count($allRecs) > 0)
 		{
 			foreach ($allRecs as $record)
 			{
@@ -211,7 +211,7 @@ class OutageService
 
 		$retVal = new stdClass();
 		$retVal->outages = array();
-		if (count($allRecs) > 0)
+		if (dcl_count($allRecs) > 0)
 		{
 			foreach ($allRecs as $record)
 			{
@@ -264,7 +264,7 @@ class OutageService
 
 		$retVal = new stdClass();
 		$retVal->outages = array();
-		if (count($allRecs) > 0)
+		if (dcl_count($allRecs) > 0)
 		{
 			foreach ($allRecs as $record)
 			{

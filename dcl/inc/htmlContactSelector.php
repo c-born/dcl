@@ -135,7 +135,7 @@ class htmlContactSelector
 			{
 				$this->oView->logiclike = 'AND';
 				$aCriteria = explode(',', $filterSearch);
-				if (count($aCriteria) > 2)
+				if (dcl_count($aCriteria) > 2)
 				{
 					$this->oView->AddDef('filterlike', 'last_name', trim($aCriteria[0]));
 					array_shift($aCriteria);
@@ -152,7 +152,7 @@ class htmlContactSelector
 		if ($filterStartsWith != '')
 			$this->oView->AddDef('filterstart', 'last_name', $filterStartsWith);
 
-		if (is_array($filterID) && count($filterID) > 0)
+		if (is_array($filterID) && dcl_count($filterID) > 0)
 		{
 			$this->oView->AddDef('filter', 'contact_id', $filterID);
 

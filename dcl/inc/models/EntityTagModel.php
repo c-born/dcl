@@ -81,7 +81,7 @@ class EntityTagModel extends DbProvider
 			}
 		}
 		
-		if (count($aTagID) < 1)
+		if (dcl_count($aTagID) < 1)
 			$aTagID[] = -1;
 			
 		$sTagID = join(',', $aTagID);
@@ -144,7 +144,7 @@ class EntityTagModel extends DbProvider
 		}
 
 		$aTags = explode(',', $sID);
-		$iTagCount = count($aTags);
+		$iTagCount = dcl_count($aTags);
 		$bMultiTag = ($iTagCount > 1);
 		
 		$sSQL = '';

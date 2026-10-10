@@ -62,7 +62,7 @@ function smarty_function_dcl_tag_link($params, &$smarty)
 
 			if (in_array($sTag, $aSelected))
 			{
-				if (count($aSelected) == 1)
+				if (dcl_count($aSelected) == 1)
 					echo ' <a href="' . DCL_WWW_ROOT . 'main.php?menuAction=htmlTags.browse"> <span class="glyphicon glyphicon-trash"></a>';
 				else
 				{

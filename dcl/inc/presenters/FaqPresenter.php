@@ -49,11 +49,11 @@ class FaqPresenter
 		if ($g_oSec->HasPerm(DCL_ENTITY_FAQ, DCL_PERM_ADD))
 			$oTable->addToolbar(menuLink('', 'menuAction=Faq.Create'), STR_CMMN_NEW);
 
-		if (count($allRecs) > 0)
+		if (dcl_count($allRecs) > 0)
 		{
 			$objP = new PersonnelModel();
 			$oTable->addColumn(STR_FAQ_OPTIONS, 'html');
-			for ($i = 0; $i < count($allRecs); $i++)
+			for ($i = 0; $i < dcl_count($allRecs); $i++)
 			{
 				if ($allRecs[$i][3] > 0 && $objP->Load($allRecs[$i][3]) != -1)
 					$allRecs[$i][3] = $objP->f('short');

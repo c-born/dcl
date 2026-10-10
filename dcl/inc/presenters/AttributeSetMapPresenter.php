@@ -40,7 +40,7 @@ class AttributeSetMapPresenter
 
 		$tableHtml = '';
 
-		for ($cnt = 0; $cnt < count($theAttributes); $cnt++)
+		for ($cnt = 0; $cnt < dcl_count($theAttributes); $cnt++)
 		{
 			$typeId = $cnt + 1;
 			$section = $theAttributes[$cnt];
@@ -133,7 +133,7 @@ class AttributeSetMapPresenter
 		$htmlAvailable = '';
 		$htmlSelected = '';
 		$arrSelectedData = array();
-		for ($i = 0; $i < count($arrAll); $i++)
+		for ($i = 0; $i < dcl_count($arrAll); $i++)
 		{
 			$key = $arrAll[$i][0];
 			$val = $arrAll[$i][1];

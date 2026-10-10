@@ -93,7 +93,7 @@ class boView
 	{
 		$retVal = '';
 
-		if (count($arr) > 0)
+		if (dcl_count($arr) > 0)
 		{
 			$retVal = $field . '=';
 			$bFirst = true;
@@ -104,9 +104,9 @@ class boView
 					if ($bFirst == false)
 						$retVal .= ',';
 
-					if (count($value) > 0)
+					if (dcl_count($value) > 0)
 					{
-						$retVal .= $key . ',' . count($value);
+						$retVal .= $key . ',' . dcl_count($value);
 						foreach ($value as $realKey => $realVal)
 						{
 							if ($encode)
@@ -141,31 +141,31 @@ class boView
 		$retVal .= '&vs=' . $this->style;
 		if ($this->title != '')
 			$retVal .= '&vti=' . rawurlencode($this->title);
-		if (count($this->columns) > 0)
+		if (dcl_count($this->columns) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vc', $this->columns);
-		if (count($this->columnhdrs) > 0)
+		if (dcl_count($this->columnhdrs) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vch', $this->columnhdrs);
-		if (count($this->groups) > 0)
+		if (dcl_count($this->groups) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vg', $this->groups);
-		if (count($this->order) > 0)
+		if (dcl_count($this->order) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vo', $this->order);
-		if (count($this->filter) > 0)
+		if (dcl_count($this->filter) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vf', $this->filter);
-		if (count($this->filternot) > 0)
+		if (dcl_count($this->filternot) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfn', $this->filternot);
-		if (count($this->filterdate) > 0)
+		if (dcl_count($this->filterdate) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfd', $this->filterdate);
-		if (count($this->filterlike) > 0)
+		if (dcl_count($this->filterlike) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfl', $this->filterlike);
-		if (count($this->filterstart) > 0)
+		if (dcl_count($this->filterstart) > 0)
 			$retVal .= '&';
 		$retVal .= $this->GetURLArray('vfs', $this->filterstart);
 
@@ -188,7 +188,7 @@ class boView
 				'vf' => 'filter', 'vfn' => 'filternot', 'vfd' => 'filterdate', 'vfl' => 'filterlike', 'vfs' => 'filterstart');
 		foreach ($arrItems as $attr => $arr)
 		{
-			if (count($this->$arr) > 0)
+			if (dcl_count($this->$arr) > 0)
 			{
 				list($var, $val) = explode('=', $this->GetURLArray($attr, $this->$arr, false));
 				$retVal .= $this->GetFormElement($var, $val);
@@ -442,9 +442,9 @@ class boView
 		reset($arr);
 		$retVal = '';
 
-		if (count($arr) > 0)
+		if (dcl_count($arr) > 0)
 		{
-			if ($appendTableForJoin == true && count($this->joins) > 0)
+			if ($appendTableForJoin == true && dcl_count($this->joins) > 0)
 			{
 			    foreach ($arr as $key => $field)
 				{
@@ -571,7 +571,7 @@ class boView
 	{
 		global $dcl_info, $g_oSec;
 
-		if (count($arr) > 0)
+		if (dcl_count($arr) > 0)
 		{
 			$i = 0;
 			foreach ($arr as $key => $field)
@@ -854,9 +854,9 @@ class boView
 		}
 		else
 		{
-			if (count($this->columns) > 0 || count($this->groups) > 0)
+			if (dcl_count($this->columns) > 0 || dcl_count($this->groups) > 0)
 			{
-				if (count($this->groups) > 0)
+				if (dcl_count($this->groups) > 0)
 				{
 					$aGroups = $this->groups;
 					foreach ($aGroups as $key => $group)
@@ -871,9 +871,9 @@ class boView
 					$sql .= $this->GetCSLFromArray($aGroups, true);
 				}
 
-				if (count($this->columns) > 0)
+				if (dcl_count($this->columns) > 0)
 				{
-					if (count($this->groups) > 0)
+					if (dcl_count($this->groups) > 0)
 						$sql .= ",";
 
 					$sql .= $this->GetCSLFromArray($this->columns, true, true);
@@ -925,7 +925,7 @@ class boView
 		$bDoneDidWhere = false;
 
 		// Add joins, if any
-		if (count($this->joins) > 0)
+		if (dcl_count($this->joins) > 0)
 		{
 			$joinsql = '';
 
@@ -974,7 +974,7 @@ class boView
 		$bOrgFilter = false;
 		$bProductFilter = false;
 		$bFirst = true;
-		if (count($this->filter) > 0)
+		if (dcl_count($this->filter) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -999,7 +999,7 @@ class boView
 
 					$sJCNSQL = '';
 					$sJCNSEQSQL = '';
-					$iNumValues = count($values);
+					$iNumValues = dcl_count($values);
 					for ($i = 0; $i < $iNumValues; $i++)
 					{
 						$sValue = $values[$i];
@@ -1033,47 +1033,47 @@ class boView
 					if ($g_oSec->IsOrgUser() || $g_oSession->IsInWorkspace())
 					{
 						$values = array_intersect($values, $g_oSession->GetProductFilter());
-						if (count($values) == 0)
+						if (dcl_count($values) == 0)
 							$values[] = -1;
 					}
 						
 					$bProductFilter = true;
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$productSQL = "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$productSQL = "($field in (" . $this->GetCSLFromArray($values) . '))';
 				}
 				else if (preg_match('/^.*\.module_id/i', $field))
 				{
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$moduleSQL = "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$moduleSQL = "($field in (" . $this->GetCSLFromArray($values) . '))';
 				}
 				else if (preg_match('/^.*\.department/i', $field))
 				{
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$deptSQL = "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$deptSQL = "($field in (" . $this->GetCSLFromArray($values) . '))';
 				}
 				else if (preg_match('/^.*\.responsible/i', $field))
 				{
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$responsibleSQL = "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$responsibleSQL = "($field in (" . $this->GetCSLFromArray($values) . '))';
 				}
 				else if (preg_match('/^.*\.create[d]?by/i', $field))
 				{
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$createbySQL = "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$createbySQL = "($field in (" . $this->GetCSLFromArray($values) . '))';
 				}
 				else if (preg_match('/^.*\.closedby/i', $field))
 				{
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$closedbySQL = "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$closedbySQL = "($field in (" . $this->GetCSLFromArray($values) . '))';
@@ -1183,7 +1183,7 @@ class boView
 						{
 							$aOrgs = explode(',', $sOrgs);
 							$values = array_intersect($values, $aOrgs);
-							if (count($values) == 0)
+							if (dcl_count($values) == 0)
 								$values = array('-1');
 						}
 						else
@@ -1210,7 +1210,7 @@ class boView
 						{
 							$aOrgs = explode(',', $sOrgs);
 							$values = array_intersect($values, $aOrgs);
-							if (count($values) == 0)
+							if (dcl_count($values) == 0)
 								$values = array('-1');
 						}
 						else
@@ -1219,7 +1219,7 @@ class boView
 						$bOrgFilter = true;
 					}
 
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$sql .= "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$sql .= "($field in (" . $this->GetCSLFromArray($values) . '))';
@@ -1230,7 +1230,7 @@ class boView
 						$sql .= ' AND ';
 
 					$bFirst = false;
-					if (count($values) == 1)
+					if (dcl_count($values) == 1)
 						$sql .= "($field=" . $this->GetCSLFromArray($values) . ')';
 					else
 						$sql .= "($field in (" . $this->GetCSLFromArray($values) . '))';
@@ -1275,17 +1275,17 @@ class boView
 		if ($closedbySQL != '')
 			$arrPersonnel[] = $closedbySQL;
 
-		if (count($arrPersonnel) > 0)
+		if (dcl_count($arrPersonnel) > 0)
 		{
 			if ($bFirst == false)
 				$sql .= ' AND ';
 
 			$bFirst = false;
 
-			if (count($arrPersonnel) > 1)
+			if (dcl_count($arrPersonnel) > 1)
 			{
 				$sql .= '(';
-				for ($i = 0; $i < count($arrPersonnel); $i++)
+				for ($i = 0; $i < dcl_count($arrPersonnel); $i++)
 				{
 					if ($i > 0)
 						$sql .= ' OR ';
@@ -1298,7 +1298,7 @@ class boView
 				$sql .= $arrPersonnel[0];
 		}
 
-		if (count($this->filternot) > 0)
+		if (dcl_count($this->filternot) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1319,7 +1319,7 @@ class boView
 					$sql .= ' AND ';
 
 				$bFirst = false;
-				if (count($values) == 1)
+				if (dcl_count($values) == 1)
 					$sql .= "($field!=" . $this->GetCSLFromArray($values) . ')';
 				else
 					$sql .= "($field not in (" . $this->GetCSLFromArray($values) . '))';
@@ -1328,7 +1328,7 @@ class boView
 
 		$objWO = new WorkOrderModel();
 
-		if (count($this->filterdate) > 0)
+		if (dcl_count($this->filterdate) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1360,7 +1360,7 @@ class boView
 			$sql .= ')';
 		}
 
-		if (count($this->filterlike) > 0)
+		if (dcl_count($this->filterlike) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1387,7 +1387,7 @@ class boView
 			$sql .= ')';
 		}
 
-		if (count($this->filterstart) > 0)
+		if (dcl_count($this->filterstart) > 0)
 		{
 			if ($bDoneDidWhere == false)
 			{
@@ -1428,7 +1428,7 @@ class boView
 
 				if (isset($this->filter['dcl_wo_account.account_id']) && is_array($this->filter['dcl_wo_account.account_id']))
 				{
-					if (count($aOrgFilter) > 0)
+					if (dcl_count($aOrgFilter) > 0)
 						$aOrgFilter = array_intersect($this->filter['dcl_wo_account.account_id'], $aOrgFilter);
 					else
 						$aOrgFilter = $this->filter['dcl_wo_account.account_id'];
@@ -1436,7 +1436,7 @@ class boView
 
 				$sql .= ' And (dcl_wo_account.account_id is null Or dcl_wo_account.account_id = ';
 				$sql .= '(Select min(account_id) From dcl_wo_account where wo_id = workorders.jcn And seq = workorders.seq';
-				if (count($aOrgFilter) > 0)
+				if (dcl_count($aOrgFilter) > 0)
 					$sql .= ' AND account_id IN (' . join(',', $aOrgFilter) . ')';
 
 				$sql .= '))';
@@ -1621,15 +1621,15 @@ class boView
 			}
 		}
 
-		if (!$bCount && (count($this->order) > 0 || count($this->groups) > 0))
+		if (!$bCount && (dcl_count($this->order) > 0 || dcl_count($this->groups) > 0))
 		{
 			$sql .= ' ORDER BY ';
-			if (count($this->order) > 0 && count($this->groups) > 0)
+			if (dcl_count($this->order) > 0 && dcl_count($this->groups) > 0)
             {
                 $groupsAndOrder = array_merge($this->groups, $this->order);
                 $sql .= $this->GetCSLFromArray($groupsAndOrder, true, false, true);
             }
-			else if (count($this->groups) > 0)
+			else if (dcl_count($this->groups) > 0)
 				$sql .= $this->GetCSLFromArray($this->groups, true, false, true);
 			else
 				$sql .= $this->GetCSLFromArray($this->order, true, false, true);

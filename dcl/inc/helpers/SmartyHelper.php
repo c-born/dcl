@@ -39,6 +39,7 @@ class SmartyHelper extends Smarty
 		// PHP functions used directly in templates must be registered explicitly (deprecated in Smarty 4, an error in Smarty 5)
 		$this->registerPlugin('modifier', 'trim', 'trim');
 		$this->registerPlugin('modifier', 'is_numeric', 'is_numeric');
+		$this->registerPlugin('modifier', 'intval', 'intval');
 
 		// Legacy templates use undefined variables freely; PHP 8 turned those notices into warnings
 		$this->muteUndefinedOrNullWarnings();

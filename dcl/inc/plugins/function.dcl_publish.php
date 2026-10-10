@@ -33,7 +33,7 @@ function smarty_function_dcl_publish($params, &$smarty)
 	unset($params['topic']);
 	
 	ob_start();
-	call_user_func_array('PubSub::Publish', array_merge(array($topic), $params));
+	call_user_func_array('PubSub::Publish', array_merge(array($topic), array_values($params)));
 	$content = ob_get_contents();
 
 	if (ob_get_length())

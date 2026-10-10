@@ -40,6 +40,9 @@ class SmartyHelper extends Smarty
 		$this->registerPlugin('modifier', 'trim', 'trim');
 		$this->registerPlugin('modifier', 'is_numeric', 'is_numeric');
 
+		// Legacy templates use undefined variables freely; PHP 8 turned those notices into warnings
+		$this->muteUndefinedOrNullWarnings();
+
 		$this->error_reporting = E_ALL & ~E_NOTICE;
 	}
 

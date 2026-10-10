@@ -69,7 +69,8 @@ class OutagePresenter
 		commonHeader();
 
 		$smartyHelper = new SmartyHelper();
-		$smartyHelper->assignByRef('ViewData', $this->GetReportViewModel());
+		$viewModel = $this->GetReportViewModel();
+		$smartyHelper->assignByRef('ViewData', $viewModel);
 
 		$smartyHelper->Render('OutageReportForm.tpl');
 	}

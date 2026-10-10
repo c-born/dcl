@@ -35,6 +35,7 @@ require_once(DCL_ROOT . 'inc/helpers/DateTimeHelper.php');
  * @subpackage api
  * @copyright Copyright (C) 1999-2004 Free Software Foundation
  */
+#[\AllowDynamicProperties]
 abstract class AbstractDbProvider
 {
 	/**

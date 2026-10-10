@@ -31,7 +31,7 @@ class ProjectHtmlHelper
 			$whereClause = ', statuses ';
 		}
 
-		if ($reportTo > 0)
+		if (is_numeric($reportTo) && $reportTo > 0)
 		{
 			$whereClause .= " WHERE reportto=$reportTo";
 		}

@@ -63,7 +63,7 @@
 			</div>
 		{else}
 			<div class="panel-heading">
-				{dcl_gravatar userId=$VAL_RESOLUTIONS[tr].loggedby_id size=24 class="img-rounded"} {dcl_personnel_link text=$VAL_RESOLUTIONS[tr].loggedby id=$VAL_RESOLUTIONS[tr].loggedby_id}: {if !$IS_PUBLIC}{if $VAL_RESOLUTIONS[tr].is_public == "Y"}<span class="glyphicon glyphicon-eye-open"></span>{else}<span class="glyphicon glyphicon-lock"></span>{/if}{/if} on {$VAL_RESOLUTIONS[tr].loggedon}{if $VAL_RESOLUTIONS[tr].time|intval > 0} for {$VAL_RESOLUTIONS[tr].time} Seconds{/if}
+				{dcl_gravatar userId=$VAL_RESOLUTIONS[tr].loggedby_id size=24 class="img-rounded"} {dcl_personnel_link text=$VAL_RESOLUTIONS[tr].loggedby id=$VAL_RESOLUTIONS[tr].loggedby_id}: {if !$IS_PUBLIC}{if $VAL_RESOLUTIONS[tr].is_public == "Y"}<span class="glyphicon glyphicon-eye-open"></span>{else}<span class="glyphicon glyphicon-lock"></span>{/if}{/if} on {$VAL_RESOLUTIONS[tr].loggedon}{if $VAL_RESOLUTIONS[tr].time|replace:':':''|intval > 0} for {$VAL_RESOLUTIONS[tr].time} Seconds{/if}
 				{if $PERM_MODIFY_TR || $PERM_DELETE_TR}<div class="pull-right">
 					{if $PERM_MODIFY_TR}<a href="{$URL_MAIN_PHP}?menuAction=htmlTicketresolutions.modify&id={$VAL_RESOLUTIONS[tr].resid}" class="btn btn-primary btn-xs" title="{$smarty.const.STR_CMMN_EDIT|escape}">
 							<span class="glyphicon glyphicon-pencil"></span>

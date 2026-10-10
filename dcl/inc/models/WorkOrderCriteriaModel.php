@@ -220,7 +220,10 @@ class WorkOrderCriteriaModel
 			$module = array();
 			foreach ($this->ModuleId as $encoded_mod)
 			{
-				list($mod_prod_id, $mod_id) = explode(',', $encoded_mod);
+				list($mod_prod_id, $mod_id) = array_pad(explode(',', $encoded_mod), 2, '');
+				if (($mod_id = Filter::ToInt($mod_id)) === null)
+					continue;		// no module chosen: do not build an empty condition
+
 				$module[dcl_count($module)] = $mod_id;
 				if (WorkOrderCriteriaModel::ArrayHasContent($this->Product) && in_array($mod_prod_id, $this->Product))
 				{

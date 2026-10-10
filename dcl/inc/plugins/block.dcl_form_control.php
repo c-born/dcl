@@ -29,7 +29,7 @@ function smarty_block_dcl_form_control($params, $content, $template, &$repeat)
 		$labelUsed = isset($params['label']) && $params['label'] != '';
 		$controlSizeUsed = isset($params['controlsize']) && $params['controlsize'] != '';
 	?>	<div class="form-group<?php if ($required) {?> required<?php } ?>"<?php if ($required) {?> data-required="required"<?php } ?>>
-			<?php if ($labelUsed) {?><label for="<?php echo $params['id']; ?>" class="col-sm-2 control-label"><?php echo htmlspecialchars($params['label'], ENT_QUOTES, 'UTF-8'); ?></label><?php } ?>
+			<?php if ($labelUsed) {?><label for="<?php echo isset($params['id']) ? $params['id'] : ''; ?>" class="col-sm-2 control-label"><?php echo htmlspecialchars($params['label'], ENT_QUOTES, 'UTF-8'); ?></label><?php } ?>
 			<div<?php if ($controlSizeUsed || $inputGroup) { ?> class="<?php if ($controlSizeUsed) { ?>col-sm-<?php echo $params['controlsize']; ?><?php } ?><?php if ($inputGroup) { ?> inputGroupContainer<?php } ?>"<?php } ?>>
 			<?php if ($inputGroup) { ?><div class="input-group"><?php }
 

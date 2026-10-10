@@ -23,6 +23,7 @@
 function smarty_function_dcl_input_text($params, &$smarty)
 {
 	$attributes = array_intersect_key($params, array('id' => '', 'name' => '', 'class' => '', 'maxlength' => '', 'value' => ''));
+	$attributes += array('id' => '', 'name' => '', 'class' => '', 'maxlength' => '', 'value' => '');
 	$attributes['class'] .= ' form-control';
 	if ($attributes['name'] == '')
 		$attributes['name'] = $attributes['id'];

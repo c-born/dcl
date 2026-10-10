@@ -37,11 +37,11 @@ function smarty_function_dcl_select_personnel($params, &$smarty)
 		$params['size'] = 1;
 
 	$sFilter = '';
-	if ($params['active'] == 'Y')
+	if (isset($params['active']) && $params['active'] == 'Y')
 		$sFilter = "active = 'Y'";
 		
 	if (!isset($params['showName']))
-		$params['showName'] == 'N';
+		$params['showName'] = 'N';
 		
 	$sFieldList = 'p.id, p.short';
 	if ($params['showName'] == 'Y')

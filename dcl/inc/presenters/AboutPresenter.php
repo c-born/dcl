@@ -40,6 +40,20 @@ class AboutPresenter
 		$template->assign('TXT_YOURBROWSER', STR_VER_YOURBROWSER);
 
 		$template->assign('VAL_DCLVERSION', $dcl_info['DCL_VERSION']);
+		// build-info.php is written by the deploy script (commit, commit date, build date); a development copy does not have it
+		$aBuild = array('build' => 'development copy (no build information)', 'commit_date' => '', 'built' => '');
+		$sBuildFile = DCL_ROOT . 'inc/build-info.php';
+		if (is_readable($sBuildFile))
+		{
+			$aLoaded = include $sBuildFile;
+			if (is_array($aLoaded))
+				$aBuild = array_merge($aBuild, $aLoaded);
+		}
+
+		$template->assign('VAL_BUILD', $aBuild['build']);
+		$template->assign('VAL_COMMITDATE', $aBuild['commit_date']);
+		$template->assign('VAL_BUILT', $aBuild['built']);
+		$template->assign('VAL_PHPVERSION', PHP_VERSION);
 		$template->assign('VAL_REMOTEADDR', $_SERVER['REMOTE_ADDR']);
 		$template->assign('VAL_HTTPUSERAGENT', $_SERVER['HTTP_USER_AGENT']);
 

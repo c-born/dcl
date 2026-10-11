@@ -30,11 +30,15 @@ function smarty_function_dcl_metadata_display($params, &$smarty)
 		return;
 	}
 
-	if (!isset($params['value']))
+	if (!array_key_exists('value', $params))
 	{
 		trigger_error('dcl_metadata_display: missing parameter value');
 		return;
 	}
+
+	// a NULL value (e.g. closed by on an open work order) has nothing to display
+	if ($params['value'] === null)
+		return;
 
 	if (!isset($g_oMetaData) || !is_a($g_oMetaData, 'DCL_Metadatadisplay'))
 		$g_oMetaData = new DisplayHelper();

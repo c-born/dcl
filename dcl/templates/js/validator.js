@@ -238,7 +238,15 @@ function ValidatorDate(oElement, sTitle, bRequired)
 
 		var oDate = new Date(iMonth + "/" + iDay + "/" + iYear);
 		if ((oDate.getMonth() + 1) != iMonth)
+		{
 			this.setError(this._Title + " does not contain a valid date.");
+			return;
+		}
+
+		// the server only accepts a four digit year: write a typed two digit year back in full (26 becomes 2026) when the year is last in the format
+		var iYearPos = calDateFormat.indexOf("y");
+		if (iYearPos == calDateFormat.length - 4 && /^[0-9]{1,2}$/.test(sValue.substr(iYearPos)))
+			oElement.value = sValue.substr(0, iYearPos) + iYear;
 	}
 
 	this._Element = oElement;

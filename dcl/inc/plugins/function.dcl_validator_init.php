@@ -26,7 +26,7 @@ function smarty_function_dcl_validator_init($params, &$smarty)
 <script language="JavaScript">
 	var calDateFormat = String("<?php echo GetJSDateFormat(); ?>").replace("yy", "yyyy");
 </script>
-<script language="JavaScript" src="<?php echo $smarty->getTemplateVars('DIR_JS'); ?>validator.js"></script>
+<script language="JavaScript" src="<?php echo $smarty->getTemplateVars('DIR_JS'); ?>validator.js?v=<?php echo (int)@filemtime(__DIR__ . '/../../templates/js/validator.js'); ?>"></script>
 <?php
 }
 ?>

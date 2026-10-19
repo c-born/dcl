@@ -504,7 +504,8 @@ function GetJSDateFormat()
 
 	$calDateFormat = str_replace('m', 'mm', $dcl_info['DCL_DATE_FORMAT']);
 	$calDateFormat = str_replace('d', 'dd', $calDateFormat);
-	return str_replace('Y', 'y', $calDateFormat);
+	// jQuery UI: 'yy' is the four digit year, 'y' only two digits (the server requires four)
+	return str_replace('Y', 'yy', $calDateFormat);
 }
 
 function commonHeader()

@@ -85,6 +85,8 @@
 <script type="text/javascript" src="{$DIR_VENDOR}jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="{$DIR_VENDOR}jquery/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="{$DIR_VENDOR}jqueryui/jquery-ui.min.js"></script>
+{if $VAL_JSDATEFORMAT}<script type="text/javascript">$.datepicker.setDefaults({ dateFormat: "{$VAL_JSDATEFORMAT|escape:'javascript'}" });</script>
+{/if}
 <script type="text/javascript" src="{$DIR_VENDOR}modernizr/modernizr-2.8.2.min.js"></script>
 <script type="text/javascript" src="{$DIR_VENDOR}gritter/jquery.gritter.min.js"></script>
 <script type="text/javascript" src="{$DIR_VENDOR}bootstrap/js/bootstrap.min.js"></script>

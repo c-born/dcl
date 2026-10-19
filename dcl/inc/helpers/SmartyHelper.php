@@ -32,6 +32,9 @@ class SmartyHelper extends Smarty
 		$this->assign('DIR_VENDOR', DCL_WWW_ROOT . "vendor/");
 		$this->assign('WWW_ROOT', DCL_WWW_ROOT);
 		$this->assign('URL_MAIN_PHP', menuLink());
+		// date picker format for every page (the layout sets it as the jQuery UI default)
+		if (!empty($GLOBALS['dcl_info']['DCL_DATE_FORMAT']))
+			$this->assign('VAL_JSDATEFORMAT', GetJSDateFormat());
 
 		// Smarty 4 finds its own bundled plugins; only DCL's own plugin folder needs adding
 		$this->addPluginsDir(array(DCL_ROOT . 'inc/plugins'));
